@@ -49,7 +49,7 @@ The gain pixels were reclassified into two groups:
 ### About analysis process  
 For the pixel scale analysis we will want to do this:  
 1. generate sample points from the Fagan regeneration areas;  
-1. generate sample points representing the [:cehckbox:] areas that could have regenerated over the same time interval but did not [point defined on item 2.1 of Boundary for the spatial domain](#boundary-for-the-spatial-domain);  
+1. generate sample points representing the [:cehckbox:] areas that could have regenerated over the same time interval but did not. [point defined on item 2.1 of Boundary for the spatial domain](#boundary-for-the-spatial-domain);  
 1. for all the points in 1 & 2, acquire covariate data for each of those coordinates from the various datasets you have compiled (distance to forest, elevation, etc). [**Link to the covariate table**](https://www.dropbox.com/s/10nd7y6yk2y97ef/Environmental%20and%20socioeconomic%20variables_19_07_08.xlsx?dl=0);  
 1. use the data from steps 1-3 to create models predicting regeneration potential (will be done by **Hawthorne**);  
 1. apply those models back to each of the cells in which regeneration is possible ( :black_square_button: not sure if we have defined that set yet, but it is probably going to be all the pasture and agriculture cells, therefore excluding other natural habitats like grasslands, and water, urban, etc);  
@@ -68,12 +68,12 @@ For the pixel scale analysis we will want to do this:
 ### Boundary for the spatial domain  
 1. The Fagan polygons seem to cover the band of latitudes from +25 to -25, excluding temperate forest data keeping only humid tropical forests. :black_square_button: Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).  
 1. Within that overall spatial domain, **we will also need to define the areas that**:  
-    1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points);  
+    1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
     1. I think **we do not want stratified random sampling** at this time. Let's try the random sampling functionality in GEE and see how it goes.  
     1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
     1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc;
-    1. :black_square_button: that are available for forest regeneration now (this is used for the predictions);    
-    1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#matts-data)**.  
+    1. :black_square_button: that are available for forest regeneration now (this is used for the predictions); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
+    1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#matts-data)**. **Could anyone confirm?**  
     1.  :question: how to measure restorable and non-restorable areas.  
     1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
@@ -81,53 +81,29 @@ For the pixel scale analysis we will want to do this:
 ### About layers
 The only datasets I think would be useful to run as focal datasets are:
 
-(1) Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland.
+1. Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland.  
+**Note that if we use a 1 km buffer, that is only 29 cells falling within the window. The problem with that is that there are then only 29 unique values possible in the response variable, which makes it more similar to a categorical variable in the context of random forest modelling. A 2km buffer would have 113 cells so 113 possible values, so that makes it more like a continuous variable. As a general rule of thumb, it might be best to avoid using a buffer size that results in less than 50 cells (and preferably more like 100) in the window to avoid the limited unique value problem.**
 
-Note that if we use a 1 km buffer, that is only 29 cells falling within the window. The problem with that is that there are then only 29 unique values possible in the response variable, which makes it more similar to a categorical variable in the context of random forest modelling. A 2km buffer would have 113 cells so 113 possible values, so that makes it more like a continuous variable. As a general rule of thumb, it might be best to avoid using a buffer size that results in less than 50 cells (and preferably more like 100) in the window to avoid the limited unique value problem.
+1. Cropland at 30 m resolution with a 2 km buffer  
+1. Gross deforestation at 30 m resolutions with a 2 km buffer
+1. Human population at 250 m resolution with a 2 km buffer
+1. Strictly Protected Area at 1 km with a :black_square_button: km buffer  
+1. Sustainable Protected Area at 1 km with a :black_square_button: km buffer  
+**I note those two variables could be added together in R to obtain total protected area, so no need to calculate that as part of the geoprocessing.**  
+:question: **I dind't understand the sentence above.**  
+1. Urban area at 300 m reslution with a 2 km buffer
+1. Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.  
+**Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.**
+1. :black_square_button: Slope at 30m resolution with a 500 m buffer  
 
-(2) Cropland at 30 m resolution with a 2 km buffer
-
-(3) Gross deforestation at 30 m resolutions with a 2 km buffer
-
-(4) Human population at 250 m resolution with a 2 km buffer
-
-Assuming that the resolutions of these two datasets:
-Strictly Protected Area
-Sustainable Protected Area
-are actually 111.3 m, not 111.3 km (is that a typo?), then:
-
-(5) Strictly Protected Area at 111.3 m with a 2 km buffer
-(6) Sustainable Protected Area at 111.3 m with a 2 km buffer
-
-I note those two variables could be added together in R to obtain total protected area, so no need to calculate that as part of the geoprocessing.
-
-(7) Urban area at 300 m reslution with a 2 km buffer
-
-(8) Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer. Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.
-
-Elevation: I don't think we need a focal window, just use the pixel value.
-
-(9) Slope at 30m resolution with a 500 m buffer?
-
-
-I think all the rest of the variables we could process as pixel data (no focal windows).
-What do you think?
-
-
-1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for 500m, 1 km and 2 km. I removed buffer needs for data with coarse resolution, for example 10 km. Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only. This was my thinking to tell which variables we need buffer or not.
-
-1.2. Red color. I used to show lkayers taht we should not use because we have it in a better resolution.
-
-1.3. Orange color. I used to show layers taht we may want to produce using differnet years or range of years.
-
-1.4. Yellow color. I used to include variables that we will need build distance layers. For example distance to forest. I included it only. Which are the others I should include (Hawthorne): distance to rivers, roads, urban areas, forestry and natural regeneration?
-
-1.5. Protected areas. I think it is in metter and not km as I wrote. I changed to metters - Pablo, can you check it please.
-* **These can just be binary rasters** if that is easiest. 
-* Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
+**Some othr points**
+* :question: Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
 * To use the same map from the global prioritization (Bernardo's paper).
 * Check if we could use data from this new paper in Science.
 * :black_square_button: the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly).  
+
+I think all the rest of the variables we could process as pixel data (no focal windows).
+What do you think?
 
 #### Points-based:  
 * the identify of the country/territory within which the pixel falls [GADM](https://gadm.org/data.html)  
@@ -135,6 +111,17 @@ What do you think?
 * the identity of the continent within which the pixel falls. :question:  
 * the lat and lon of each point;  
 * does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:question: **How should I ideintify protection type? by category? 0/1?**)
+* Elevation: I don't think we need a focal window, just use the pixel value.  
+**Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.**
+
+### About buffers  
+1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for 500m, 1 km and 2 km. I removed buffer needs for data with coarse resolution, for example 10 km. 
+
+1.2. Red color. I used to show lkayers taht we should not use because we have it in a better resolution.
+
+1.3. Orange color. I used to show layers taht we may want to produce using differnet years or range of years.
+
+1.4. Yellow color. I used to include variables that we will need build distance layers. For example distance to forest. I included it only. Which are the others I should include (Hawthorne): distance to rivers, roads, urban areas, forestry and natural regeneration?
 
 ### Discussions on clases and definitons
 
