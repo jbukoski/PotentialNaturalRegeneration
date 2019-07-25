@@ -1,6 +1,6 @@
 # Potential for natural regeneration
 About emojis:  
-:checkbox: confirm something of the following sentence;  
+:black_square_button: confirm something of the following sentence;  
 :question: define how to solve the following issue/sentence;  
 
 
@@ -29,7 +29,7 @@ The gain pixels were reclassified into two groups:
 - [ ] Felipe start to extract data in the stratified sample that we have discussed with Hathorne.
 
 
-- [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#Questions I believe been answered);
+- [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered);
 - [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;  
 - [ ] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it. **Is it the same we used to Luí analysis?**  
 - [ ] take a look on layer about River  
@@ -37,7 +37,7 @@ The gain pixels were reclassified into two groups:
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
 - [ ] share with Hawthorn how we defined retorable/non-restorable areas; Restorable areas - we have, at least, four ways to do it:
 - [ ] Build distance to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
-    1. for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#Matt-s-data);  
+    1. for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
     1. if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps based on the most recent Hansen data;
 
 **To keep in mind**  
@@ -73,7 +73,7 @@ For the pixel scale analysis we will want to do this:
     1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
     1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc;
     1. :black_square_button: that are available for forest regeneration now (this is used for the predictions);    
-    1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#Matt-s-data)**.  
+    1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#matts-data)**.  
     1.  :question: how to measure restorable and non-restorable areas.  
     1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
@@ -152,7 +152,7 @@ What do you think?
 ### Questions I believe been answered
 
 1. :heavy_check_mark: Do the Fagan polygons already exclude forestry?  
-    Answer: I saw that they classifyied as plantation and regrowth, also take a look on [Matt's data section](#Matt-s-data);  
+    Answer: I saw that they classifyied as plantation and regrowth, also take a look on [Matt's data section](#matts-data);  
 1. There is no "distance to nearest forest" variable. I see you say we can extract them. I care most about distance to forest, and am less concerned about including distance to roads or rivers. I think distance to forest should be calculated at a 30m resolution and would need to be done at two time periods:  
     Answer: OK, already done in Felipe'staks section; 
 1. :black_square_button: Felipe, when we start to use this data I would like to check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.
