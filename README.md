@@ -1,12 +1,12 @@
 # Potential for natural regeneration
-About emojis:
+About emojis:  
 :checkbox: confirm something of the following sentence;  
 :question: define how to solve the following issue/sentence;  
 
 
 ## General overview:  
 This modeling and study is different form the previous. We do not have study coordinates, we have pixels were natural regeneration occurred across the study area. He (Matt Fagan) calculated natural regeneration between 2000 and 2012 using the Hansen data - including loss and gain. So, the original data is for 2000, the last data is for 2012 and regeneration occurred in 12 years.  
-:checkbox: If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt.  
+:black_square_button: If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt.  
 
 [For more information, see project's overwiew](https://trello.com/c/LPu48ZNL)  
 
@@ -52,7 +52,7 @@ For the pixel scale analysis we will want to do this:
 1. generate sample points representing the [:cehckbox:] areas that could have regenerated over the same time interval but did not [point defined on item 2.1 of Boundary for the spatial domain](#boundary-for-the-spatial-domain);  
 1. for all the points in 1 & 2, acquire covariate data for each of those coordinates from the various datasets you have compiled (distance to forest, elevation, etc). [**Link to the covariate table**](https://www.dropbox.com/s/10nd7y6yk2y97ef/Environmental%20and%20socioeconomic%20variables_19_07_08.xlsx?dl=0);  
 1. use the data from steps 1-3 to create models predicting regeneration potential (will be done by **Hawthorne**);  
-1. apply those models back to each of the cells in which regeneration is possible ( :checkbox: not sure if we have defined that set yet, but it is probably going to be all the pasture and agriculture cells, therefore excluding other natural habitats like grasslands, and water, urban, etc);  
+1. apply those models back to each of the cells in which regeneration is possible ( :black_square_button: not sure if we have defined that set yet, but it is probably going to be all the pasture and agriculture cells, therefore excluding other natural habitats like grasslands, and water, urban, etc);  
 :question: **landuse according to IIS layer?**;  
 1. we then need to perform various summaries of that prediction raster;  
 
@@ -66,16 +66,16 @@ For the pixel scale analysis we will want to do this:
 
 
 ### Boundary for the spatial domain  
-1. The Fagan polygons seem to cover the band of latitudes from +25 to -25, excluding temperate forest data keeping only humid tropical forests. :checkbox: Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).  
+1. The Fagan polygons seem to cover the band of latitudes from +25 to -25, excluding temperate forest data keeping only humid tropical forests. :black_square_button: Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).  
 1. Within that overall spatial domain, **we will also need to define the areas that**:  
-    1. :checkbox: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points);  
+    1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points);  
     1. I think **we do not want stratified random sampling** at this time. Let's try the random sampling functionality in GEE and see how it goes.  
-    1. :checkbox: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
-    1. :checkbox: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc;
-    1. :checkbox: that are available for forest regeneration now (this is used for the predictions);    
-    1. :checkbox: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#Matt-s-data)**.  
+    1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
+    1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc;
+    1. :black_square_button: that are available for forest regeneration now (this is used for the predictions);    
+    1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#Matt-s-data)**.  
     1.  :question: how to measure restorable and non-restorable areas.  
-    1. :checkbox: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
+    1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
 
 ### About layers
@@ -127,7 +127,7 @@ What do you think?
 * Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
 * To use the same map from the global prioritization (Bernardo's paper).
 * Check if we could use data from this new paper in Science.
-* :checkbox: the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly).  
+* :black_square_button: the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly).  
 
 #### Points-based:  
 * the identify of the country/territory within which the pixel falls [GADM](https://gadm.org/data.html)  
@@ -138,7 +138,7 @@ What do you think?
 
 ### Discussions on clases and definitons
 
-1. :checkbox: Are there any ambiguous land use categories we need to discuss? How can we develop these two datasets?  
+1. :black_square_button: Are there any ambiguous land use categories we need to discuss? How can we develop these two datasets?  
 
 1. **Confirmar com renatinho**: Felipe has developed this layer already for us, right? (**Which paper?**) Can you remember me as we developed it - ESA CCI? At lower resolution (30 m) we have some more detailed layers that we could try to build this potentially restorable areas more detailed. In summary, this is a key point and before starting to get the data we need to have clear which database we will use to build it.  
 
@@ -155,7 +155,7 @@ What do you think?
     Answer: I saw that they classifyied as plantation and regrowth, also take a look on [Matt's data section](#Matt-s-data);  
 1. There is no "distance to nearest forest" variable. I see you say we can extract them. I care most about distance to forest, and am less concerned about including distance to roads or rivers. I think distance to forest should be calculated at a 30m resolution and would need to be done at two time periods:  
     Answer: OK, already done in Felipe'staks section; 
-1. :checkbox: Felipe, when we start to use this data I would like to check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.
+1. :black_square_button: Felipe, when we start to use this data I would like to check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.
     Answer: I believe this is already defined. But not sure. **Could someone confirm?**
 1. check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.  
     Answer: This seems to be solved, right?  **Could someone confirm?**
