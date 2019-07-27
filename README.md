@@ -23,19 +23,17 @@ The gain pixels were reclassified into two groups:
 
 ### Felipe tasks
 
-- [ ] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.
+- [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
+- [X] share with Hawthorn how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
+- [ ] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it. **Is it the same we used to Luí analysis?**
+- [ ] Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so).  
 - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
 - [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level - Hawthorne, you need to suggest here.
-- [ ] Felipe start to extract data in the stratified sample that we have discussed with Hathorne.
-
-
+- [ ] Felipe start to extract data in the stratified sample that we have discussed with Hathorne.  
 - [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered);
-- [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;  
-- [ ] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it. **Is it the same we used to Luí analysis?**  
-- [ ] take a look on layer about River  
-- [ ] Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so).     
+- [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
+- [ ] take a look on layer about River       
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
-- [ ] share with Hawthorn how we defined retorable/non-restorable areas; Restorable areas - we have, at least, four ways to do it:
 - [ ] Build distance to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
     1. for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
     1. if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps based on the most recent Hansen data;
@@ -71,10 +69,10 @@ For the pixel scale analysis we will want to do this:
     1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
     1. I think **we do not want stratified random sampling** at this time. Let's try the random sampling functionality in GEE and see how it goes.  
     1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
-    1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc;
+    1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc; ([see 10th point of "About layers" section](#about-layers))  
     1. :black_square_button: that are available for forest regeneration now (this is used for the predictions); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
     1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#matts-data)**. **Could anyone confirm?**  
-    1.  :question: how to measure restorable and non-restorable areas.  
+    1.  :question: how to measure restorable and non-restorable areas.([see 10/11th point of "About layers" section](#about-layers))  
     1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
 
@@ -95,8 +93,24 @@ The only datasets I think would be useful to run as focal datasets are:
 1. Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.  
 **Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.**
 1. :black_square_button: Slope at 30m resolution with a 500 m buffer  
+1. Non-restorable areas:  
+    On Pablo's paper: we mask (exclude):
+    * Water body;
+    * Hansen's masked areas;
+    * Hans's forest areas w/ 100% fo forest cover;
+    * Wetlands;
+    * Permanent snow and ice area (Oslon data. If necessary [take a look here](https://github.com/FelipeSBarros/WorldRestorationUncertainty#updating-forested-areas-2017)  
+1. Restorable areas: [GEE code here](https://code.earthengine.google.com/46c209046cecd3349e5b36eed5de67e3) 
+    >""We estimated the persistence chances of restored
+forests using the relative rate of recent tree cover loss as surrogate.
+To do so, we summed forest cover loss from 2001 to 2015 and di-
+vided it by forest cover in 2000, using data from (48). We applied
+a threshold of 20% tree canopy cover for year 2000 data to produce
+a binary map of forest (1)/nonforest (0) on its original spatial resolution
+(fig. S8C)." (Global restoration opportunities in tropical
+rainforest landscapes")  
 
-**Some othr points**
+**Some other points**
 * :question: Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
 * To use the same map from the global prioritization (Bernardo's paper).
 * Check if we could use data from this new paper in Science.
@@ -127,7 +141,7 @@ What do you think?
 
 1. :black_square_button: Are there any ambiguous land use categories we need to discuss? How can we develop these two datasets?  
 
-1. **Confirmar com renatinho**: Felipe has developed this layer already for us, right? (**Which paper?**) Can you remember me as we developed it - ESA CCI? At lower resolution (30 m) we have some more detailed layers that we could try to build this potentially restorable areas more detailed. In summary, this is a key point and before starting to get the data we need to have clear which database we will use to build it.  
+1. **Confirmar com renatinho**: Felipe has developed this layer already for us, right? (**Which paper?**) Can you remember me as we developed it - ESA CCI? At lower resolution (30 m) we have some more detailed layers that we could try to build this potentially restorable areas more detailed. In summary, this is a key point and before starting to get the data we need to have clear which database we will use to build it. ([see 11th point of "About layers" section](#about-layers))    
 
 1. Do you already have an algorithm for generating random points and what is it? How feasible **would it be to generate 550,000 random points in the regeneration areas (regen=1)**; and **550,000 in the non-regeneration areas (regen=0)**? That would be **1.1 million in total**, but we would expect to lose some of those to NoData problems when intersecting with the covariate datasets, hence we might end up with approximately 1 million.  
     1. **I need you to tell me what sorts of numbers are realistic if this is asking too much.** One of the reasons I am asking for a lot is that we will almost certainly want to run some country-level or continental-level models to evaluate whether this improves prediction accuracy, so we need to make sure we have enough sample points within each of those strata.  
