@@ -26,8 +26,16 @@ The gain pixels were reclassified into two groups:
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
 - [X] share with Hawthorn how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
 - [ ] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it. **Is it the same we used to Luí analysis?**
-- [ ] Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so).  
-- [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
+- [ ] Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so).
+ - [ ] Converted the Fagan polygons to raster:
+    - [ ] Is that at 30m resolution? 
+    - [ ] What projection are you using for this analysis? 
+    **It would be useful to confirm that it meets the criteria that:**
+    - [ ] (i) the Fagan polygons were non-forest at the beginning of the time series
+    - [ ] (ii) the polygons have been forested for at least the last 3 consecutive years in the time series
+    - [ ] (iii) the polygons are part of a regiongroup region that is at least 5 cells, allowing connections on the diagonal.
+    > If you have the ability to look at that data and see if my interpretation seems correct that would be good. If any of those criteria have not been met we will need to think about whether we want to do them ourselves or adjust the details of the analysis that we did for the AF.
+
 - [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level - Hawthorne, you need to suggest here.
 - [ ] Felipe start to extract data in the stratified sample that we have discussed with Hathorne.  
 - [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered);
@@ -35,6 +43,7 @@ The gain pixels were reclassified into two groups:
 - [ ] take a look on layer about River       
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
 - [ ] Build distance to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
+    - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
     1. for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
     1. if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps based on the most recent Hansen data;
 
@@ -64,9 +73,11 @@ For the pixel scale analysis we will want to do this:
 
 
 ### Boundary for the spatial domain  
-1. The Fagan polygons seem to cover the band of latitudes from +25 to -25, excluding temperate forest data keeping only humid tropical forests. :black_square_button: Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).  
+1. The Fagan polygons seem to cover the band of latitudes from +25 to -25, excluding temperate forest data keeping only humid tropical forests.   
+    :black_square_button: ~~Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).~~ 
+    > I have been thinking about whether to use the ecoregions boundaries to define the spatial domain, and I am now thinking that we should not do that. The trouble with the ecoregions is that they are mapped at a very coarse mapping resolution. Of course there is a great deal of variation in habitat within each of those ecoregions and some of the ecoregions classified as non-forest at a coarse scale may contain regions of forest within them. Our analysis uses data with a much finer mapping resolution. So, for now, I suggest we treat our spatial domain as: all terrestrial land between 25 to -30 latitude (or whatever the exact latitude extent of the Fagan data is).  
 1. Within that overall spatial domain, **we will also need to define the areas that**:  
-    1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
+    1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark: ([see 1st and 2nd points of About Layes section](#about-layers) **These can just be binary rasters** if that is easiest.  
     1. I think **we do not want stratified random sampling** at this time. Let's try the random sampling functionality in GEE and see how it goes.  
     1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
     1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc; ([see 10th point of "About layers" section](#about-layers))  
@@ -77,6 +88,15 @@ For the pixel scale analysis we will want to do this:
 
 
 ### About layers
+
+* The Fagan data provides the mask for the areas that regenerated forest.  
+* The other mask we need to develop is **the areas that could have regenerated but did not**. Ideally this would be done at the same resolution as the Fagan data and would meet these criteria:
+    1. (i) if a cell is "1" in the Fagan data (i.e. it regenerated), it cannot also be part of this set (i.e. obviously a cell cannot be coded as both regenerating and not regenerating).
+    1. (ii) it must have been non-forest at the beginning of the time-series
+    1. (iii) it should exclude all cells that were never forest, or that have no possibility of being forest (i.e. all urban/developed areas, water, wetlands, etc)
+    1. (iv) the cell must fall within the spatial domain defined above
+>If this cannot be done at the same resolution as the Fagan data, OK, let's just proceed with it at whatever best resolution we can.
+
 The only datasets I think would be useful to run as focal datasets are:
 
 1. Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland.  
@@ -95,11 +115,12 @@ The only datasets I think would be useful to run as focal datasets are:
 1. :black_square_button: Slope at 30m resolution with a 500 m buffer  
 1. Non-restorable areas:  
     On Pablo's paper: we mask (exclude):
-    * Water body;
-    * Hansen's masked areas;
-    * Hans's forest areas w/ 100% fo forest cover;
+    * Water body;  
     * Wetlands;
     * Permanent snow and ice area (Oslon data. If necessary [take a look here](https://github.com/FelipeSBarros/WorldRestorationUncertainty#updating-forested-areas-2017)  
+    * ~~Hansen's masked areas~~;
+    * ~~Hansen's forest areas w/ 100% fo forest cover~~;
+
 1. Restorable areas: [GEE code here](https://code.earthengine.google.com/46c209046cecd3349e5b36eed5de67e3) 
     >""We estimated the persistence chances of restored
 forests using the relative rate of recent tree cover loss as surrogate.
@@ -145,6 +166,10 @@ What do you think?
 
 1. Do you already have an algorithm for generating random points and what is it? How feasible **would it be to generate 550,000 random points in the regeneration areas (regen=1)**; and **550,000 in the non-regeneration areas (regen=0)**? That would be **1.1 million in total**, but we would expect to lose some of those to NoData problems when intersecting with the covariate datasets, hence we might end up with approximately 1 million.  
     1. **I need you to tell me what sorts of numbers are realistic if this is asking too much.** One of the reasons I am asking for a lot is that we will almost certainly want to run some country-level or continental-level models to evaluate whether this improves prediction accuracy, so we need to make sure we have enough sample points within each of those strata.  
+    * Ultimately we need to generate two sets of random points:
+        * 500,000 points representing a random sample of cells that regenerated (the Fagan mask) - as described above 
+        * 500,000 points representing a random sample of cells that did not regenerate (the other mask defined above).  
+They can be combined into a dataset has the x and y coordinates, and a field called "regen" that is coded as a "1" for all the cells that regenerated, and a "0" for all the cells that did not. So that dataset will be 1 million records in length. However, if 500,000 is going to take far too long, then start with 100,000.
 
 > we need to be able to describe a rational approach to buffer selection that passes peer review. Some common approaches used are: (i) select a constant buffer size and argue that is the focal area that is likely to affect regeneration potential in a given cell; (ii) select a different buffer size for groups of variables (environmental, biological, socioeconomic) and justify the buffer size for each of those three groups; (iii) justify a buffer size for each dataset individually; (iv) assume that all variables may be relevent at multiple scales and summarise the variables at site (~30m), local (~1km) and regional (~10km) scales. It seems to be (iii) that is the current strategy, which is fine but harder work to justify each buffer size. I wonder if a radius larger than 10 km perhaps becomes harder to link to forest regeneration within a cell?  
 
