@@ -25,8 +25,11 @@ The gain pixels were reclassified into two groups:
 
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
 - [X] share with Hawthorn how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
-- [ ] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it. **Is it the same we used to Luí analysis?**
-- [ ] Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so).
+- [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
+    Couldn't get the orignal data. asked Pablo to help.  
+- [ ] Look for layers about River;  
+- [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
+    **After contact on Whatsapp: past disturbance intensity is just for Brazil... we eon't use. (28/07/2019)**;    
  - [ ] Converted the Fagan polygons to raster:
     - [ ] Is that at 30m resolution? 
     - [ ] What projection are you using for this analysis? 
@@ -38,9 +41,9 @@ The gain pixels were reclassified into two groups:
 
 - [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level - Hawthorne, you need to suggest here.
 - [ ] Felipe start to extract data in the stratified sample that we have discussed with Hathorne.  
-- [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered);
+- [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);
 - [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
-- [ ] take a look on layer about River       
+       
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
 - [ ] Build distance to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
     - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
@@ -52,7 +55,10 @@ The gain pixels were reclassified into two groups:
 
 ### Pablo's tasks
 1. Pablo, can you write here the methodology we used for your current paper.
- 
+1. Help with layers used on Nanni et. al. ("The neotropical reforestation hotspots: A biophysical and socioeconomic typology of contemporary forest expansion"):  
+    * "Rural-urban ratio", 
+    * "Rural Population Change" and 
+    * "Urban Population Change"; 
 ### About analysis process  
 For the pixel scale analysis we will want to do this:  
 1. generate sample points from the Fagan regeneration areas;  
