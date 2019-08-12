@@ -75,7 +75,7 @@ For the pixel scale analysis we will want to do this:
 
 ### Alternatives processes:  
 * **Converting the Fagan data to raster** is certainly an option and we will probably need to do it anyway to integrate that data into whatever land cover data we are using.  
-    * **But if** the conversion to raster and the random point generation with those rasters is **problematic then we can devise ways of processing the polygon data to do the random sampling (weighted probability sampling of polygons by area of polygon and then random point generation within each polygon)**.  
+    * :heavy_check_mark: **But if** the conversion to raster and the random point generation with those rasters is **problematic then we can devise ways of processing the polygon data to do the random sampling (weighted probability sampling of polygons by area of polygon and then random point generation within each polygon)**. This was done and is documented on [sampling.r](./R/sampling.r)  
 * Start sampling exercise to understand its procedure; Should we be concerned with NA? I was expecting that would be possible to inform a raster stack instead of polygons and by doing this only the pixels with value would be sample. But I'm not sure if this is possible.  
 
 
@@ -85,7 +85,7 @@ For the pixel scale analysis we will want to do this:
     > I have been thinking about whether to use the ecoregions boundaries to define the spatial domain, and I am now thinking that we should not do that. The trouble with the ecoregions is that they are mapped at a very coarse mapping resolution. Of course there is a great deal of variation in habitat within each of those ecoregions and some of the ecoregions classified as non-forest at a coarse scale may contain regions of forest within them. Our analysis uses data with a much finer mapping resolution. So, for now, I suggest we treat our spatial domain as: all terrestrial land between 25 to -30 latitude (or whatever the exact latitude extent of the Fagan data is).  
 1. Within that overall spatial domain, **we will also need to define the areas that**:  
     1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark: ([see 1st and 2nd points of About Layes section](#about-layers) **These can just be binary rasters** if that is easiest.  
-    1. I think **we do not want stratified random sampling** at this time. Let's try the random sampling functionality in GEE and see how it goes.  
+    1. I think **we do not want stratified random sampling** at this time. :heavy_check_mark: Let's try the random sampling functionality in GEE and see how it goes.  
     1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
     1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc; ([see 10th point of "About layers" section](#about-layers))  
     1. :black_square_button: that are available for forest regeneration now (this is used for the predictions); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  

@@ -1,6 +1,6 @@
 # Validation process of regrowth data
 
-This is a report of validation process requested by Hawthorne. You can find more information on[Felipe's tasks on README document]():  
+This is a report of validation process requested by Hawthorne. You can find more information on [Felipe's tasks on README document](./README.md/#felipe-tasks):  
 
 **It would be useful to confirm that it meets the criteria that:**  
 - [X] (i) the Fagan polygons were non-forest at the beginning of the time series Started this [validation process](https://code.earthengine.google.com/c37db48ed353a44a4aee0d5f12c13869);  
