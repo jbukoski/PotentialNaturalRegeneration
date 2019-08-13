@@ -2,7 +2,7 @@
 About emojis:  
 :black_square_button: confirm something of the following sentence;  
 :question: define how to solve the following issue/sentence;  
-
+:heavy_check_mark: Question/point already defined;  
 
 ## General overview:  
 This modeling and study is different form the previous. We do not have study coordinates, we have pixels were natural regeneration occurred across the study area. He (Matt Fagan) calculated natural regeneration between 2000 and 2012 using the Hansen data - including loss and gain. So, the original data is for 2000, the last data is for 2012 and regeneration occurred in 12 years.  
@@ -81,8 +81,8 @@ For the pixel scale analysis we will want to do this:
 
 ### Boundary for the spatial domain  
 1. The Fagan polygons seem to cover the band of latitudes from +25 to -25, excluding temperate forest data keeping only humid tropical forests.   
-    :black_square_button: ~~Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).~~ 
-    > I have been thinking about whether to use the ecoregions boundaries to define the spatial domain, and I am now thinking that we should not do that. The trouble with the ecoregions is that they are mapped at a very coarse mapping resolution. Of course there is a great deal of variation in habitat within each of those ecoregions and some of the ecoregions classified as non-forest at a coarse scale may contain regions of forest within them. Our analysis uses data with a much finer mapping resolution. So, for now, I suggest we treat our spatial domain as: all terrestrial land between 25 to -30 latitude (or whatever the exact latitude extent of the Fagan data is).  
+    :heavy_chack_mark: ~~Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).~~ 
+    > I have been thinking about whether to use the ecoregions boundaries to define the spatial domain, and I am now thinking that we should not do that. The trouble with the ecoregions is that they are mapped at a very coarse mapping resolution. Of course there is a great deal of variation in habitat within each of those ecoregions and some of the ecoregions classified as non-forest at a coarse scale may contain regions of forest within them. Our analysis uses data with a much finer mapping resolution. So, for now, I suggest we treat our spatial domain as: all terrestrial land between 25 to -30 latitude (or whatever the exact latitude extent of the Fagan data is). 
 1. Within that overall spatial domain, **we will also need to define the areas that**:  
     1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark: ([see 1st and 2nd points of About Layes section](#about-layers) **These can just be binary rasters** if that is easiest.  
     1. I think **we do not want stratified random sampling** at this time. :heavy_check_mark: Let's try the random sampling functionality in GEE and see how it goes.  **This was done and is documented on [sampling.r](./R/sampling.r)**.
@@ -93,6 +93,18 @@ For the pixel scale analysis we will want to do this:
     1.  :question: how to measure restorable and non-restorable areas.([see 10/11th point of "About layers" section](#about-layers))  
     1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
+* Question from Hawthorne:
+    1. Are you OK with exlucding Deserts & Xeric grasslands?  
+    1. Do we include Flooded Grasslands & Savannahs so that the Pantanal is included in the analysis?  
+    1.  Which option would you argue for:  
+        - Include all Montane Grasslands & Shrublands? 
+        - Include only African Montane Grasslands & Shrublands? 
+        - Exclude all Montane Grasslands & Shrublands?
+    1. OK to include Tropical & Subtropical coniferous forest?  
+    1. :heavy_check_mark: The other two ecoregions are extensive and have lots of forest regeneration within them, so are included for sure:  
+        - Tropical & Subtropical Dry Broadleaf Forests  
+        - Tropical & Subtropical Moist Broadleaf Forests  
+* Tropical & Subtropical coniferous forest, Tropical & Subtropical Dry Broadleaf Forests, Tropical & Subtropical Moist Broadleaf Forests. That is, critical areas such as - Tropical & Subtropical Grasslands, Savannas & Shrublands - should not be included in my point of view. Reasons: 1) our study is focused exclusively in forest biomes (even for TRENDS) and Fagan's work as well, 2) these delimitations are too course and it may also has affected Fagan's data. But we should be conservative, I would prefer to avoid any risk of including afforestation in our map, 3) our contract is for (humid) forests, we are doing more than this and it is great.  I only would like to include (sub-)tropical forests of Australia, they don't have it in the ecorregions and we have some data there. Do you have any shapefile for it Hawthorne?  
 
 ### About layers
 
