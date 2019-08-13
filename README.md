@@ -22,7 +22,7 @@ The gain pixels were reclassified into two groups:
 
 
 ### Felipe tasks
-
+- [ ] [layers organization](https://code.earthengine.google.com/59628a0146beb40a9c3a65f0068eb265)  
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
 - [X] share with Hawthorn how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
@@ -120,14 +120,19 @@ For the pixel scale analysis we will want to do this:
 
 The only datasets I think would be useful to run as focal datasets are:
 
-1. Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland.  
+1. Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland. 
+    * CropII - :heavy_check_mark:  
+    * PastureIIS - :heavy_check_mark:
+
 **Note that if we use a 1 km buffer, that is only 29 cells falling within the window. The problem with that is that there are then only 29 unique values possible in the response variable, which makes it more similar to a categorical variable in the context of random forest modelling. A 2km buffer would have 113 cells so 113 possible values, so that makes it more like a continuous variable. As a general rule of thumb, it might be best to avoid using a buffer size that results in less than 50 cells (and preferably more like 100) in the window to avoid the limited unique value problem.**
 
-1. Cropland at 30 m resolution with a 2 km buffer  
-1. Gross deforestation at 30 m resolutions with a 2 km buffer
-1. Human population at 250 m resolution with a 2 km buffer
-1. Strictly Protected Area at 1 km with a :black_square_button: km buffer  
-1. Sustainable Protected Area at 1 km with a :black_square_button: km buffer  
+1. Cropland at 30 m resolution with a 2 km buffer :heavy_check_mark:  
+1. Gross deforestation at 30 m resolutions with a 2 km buffer :heavy_check_mark:
+1. Human population at 250 m resolution with a 2 km buffer :heavy_check_mark:  
+1. Strictly Protected Area at 1 km  
+    :question: Which focal radius?  
+1. Sustainable Protected Area at 1 km
+    :question: Which focal radius?  
 **I note those two variables could be added together in R to obtain total protected area, so no need to calculate that as part of the geoprocessing.**  
 :question: **I dind't understand the sentence above.**  
 1. Urban area at 300 m reslution with a 2 km buffer
