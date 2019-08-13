@@ -28,8 +28,9 @@ The gain pixels were reclassified into two groups:
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
     Couldn't get the orignal data. asked Pablo to help.  
 - [ ] Look for layers about River;  
+- [ ] Organize the data mentioned on [Som other points](#points-based)  
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
-    **After contact on Whatsapp: past disturbance intensity is just for Brazil... we eon't use. (28/07/2019)**;    
+    **After contact on Whatsapp: past disturbance intensity is just for Brazil... we won't use. (28/07/2019)**;    
  - [ ] Converted the Fagan polygons to raster:
     - [ ] Is that at 30m resolution? 
     - [ ] What projection are you using for this analysis?   
@@ -40,9 +41,9 @@ The gain pixels were reclassified into two groups:
         - [ ] (iii) the polygons are part of a regiongroup region that is at least 5 cells, allowing connections on the diagonal.
     > If you have the ability to look at that data and see if my interpretation seems correct that would be good. If any of those criteria have not been met we will need to think about whether we want to do them ourselves or adjust the details of the analysis that we did for the AF.
 
-- [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level - Hawthorne, you need to suggest here.
-- [ ] Felipe start to extract data in the stratified sample that we have discussed with Hathorne.  
-- [ ] Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);
+- [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level.  
+- [ ] Felipe start to extract data in the ~~stratified~~ random sample that we have discussed with Hathorne.  
+- [X] ~~Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);~~ Random sample points were done and is documented on [sampling.r](./R/sampling.r).
 - [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
        
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
@@ -59,7 +60,8 @@ The gain pixels were reclassified into two groups:
 1. Help with layers used on Nanni et. al. ("The neotropical reforestation hotspots: A biophysical and socioeconomic typology of contemporary forest expansion"):  
     * "Rural-urban ratio", 
     * "Rural Population Change" and 
-    * "Urban Population Change"; 
+    * "Urban Population Change";  
+
 ### About analysis process  
 For the pixel scale analysis we will want to do this:  
 1. generate sample points from the Fagan regeneration areas;  
@@ -150,23 +152,22 @@ a binary map of forest (1)/nonforest (0) on its original spatial resolution
 (fig. S8C)." (Global restoration opportunities in tropical
 rainforest landscapes")  
 
-**Some other points**
-* :question: Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
-* To use the same map from the global prioritization (Bernardo's paper).
-* Check if we could use data from this new paper in Science.
-* :black_square_button: the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly).  
-
-I think all the rest of the variables we could process as pixel data (no focal windows).
-What do you think?
 
 #### Points-based:  
-* the identify of the country/territory within which the pixel falls [GADM](https://gadm.org/data.html)  
-* the identify of the biome, ecoregion and province within which the pixel falls. Most current data from Ecorregions (2017), originally from Olson.  
-* the identity of the continent within which the pixel falls. :question:  
-* the lat and lon of each point;  
-* does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:question: **How should I ideintify protection type? by category? 0/1?**)
-* Elevation: I don't think we need a focal window, just use the pixel value.  
-**Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.**
+1. the identify of the country/territory within which the pixel falls [GADM](https://gadm.org/data.html)  
+1. the identify of the biome, ecoregion and province within which the pixel falls. Most current data from Ecorregions (2017), originally from Olson.  
+1. the identity of the continent within which the pixel falls. :question:  
+1. the lat and lon of each point;  
+1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:question: **How should I ideintify protection type? by category? 0/1?**)
+1. Elevation: I don't think we need a focal window, just use the pixel value.  
+**Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.**  
+
+**Some other points**
+* :question: Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
+* :black_square_button: To use the same map from the global prioritization (Bernardo's paper).
+* :black_square_button: Check if we could use data from this new paper in Science.
+* :black_square_button: the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly).  
+
 
 ### About buffers  
 1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for 500m, 1 km and 2 km. I removed buffer needs for data with coarse resolution, for example 10 km. 
