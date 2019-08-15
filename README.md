@@ -24,11 +24,11 @@ The gain pixels were reclassified into two groups:
 ### Felipe tasks
 - [ ] [layers organization](https://code.earthengine.google.com/59628a0146beb40a9c3a65f0068eb265)  
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
-- [X] share with Hawthorn how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
+- [X] share with Hawthorne how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
     Couldn't get the orignal data. asked Pablo to help.  
 - [ ] Look for layers about River;  
-- [ ] Organize the data mentioned on [Som other points](#points-based)  
+- [X] Organize the data mentioned on [Som other points](#points-based)  
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
     **After contact on Whatsapp: past disturbance intensity is just for Brazil... we won't use. (28/07/2019)**;    
  - [ ] Converted the Fagan polygons to raster:
@@ -129,16 +129,27 @@ The only datasets I think would be useful to run as focal datasets are:
 1. Cropland at 30 m resolution with a 2 km buffer :heavy_check_mark:  
 1. Gross deforestation at 30 m resolutions with a 2 km buffer :heavy_check_mark:
 1. Human population at 250 m resolution with a 2 km buffer :heavy_check_mark:  
-1. Strictly Protected Area at 1 km  
-    :question: Which focal radius?  
-1. Sustainable Protected Area at 1 km
-    :question: Which focal radius?  
+1. Strictly Protected Area at 1 km  with a 2 km buffer :heavy_check_mark:  
+1. Sustainable Protected Area at 1 km with a 2 km buffer :heavy_check_mark:  
 **I note those two variables could be added together in R to obtain total protected area, so no need to calculate that as part of the geoprocessing.**  
 :question: **I dind't understand the sentence above.**  
-1. Urban area at 300 m reslution with a 2 km buffer
-1. Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.  
-**Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.**
-1. :black_square_button: Slope at 30m resolution with a 500 m buffer  
+1. Urban area at 300 m reslution with a 2 km buffer :heavy_check_mark:  
+1. Slope at 30m resolution with a 500 m buffer :heavy_check_mark:  
+1. - [ ] Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.  
+**~~Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.~~** Defined on "so perhaps based on the most recent Hansen data" statement.  
+
+#### Points-based:  
+1. the identify of the country/territory within which the pixel falls [~~GADM~~](https://gadm.org/data.html) [actually using LISB](http://geonode.state.gov/) :heavy_check_mark:  
+1. the identify of the biome, ecoregion and province within which the pixel falls. Most current data from Ecorregions (2017), originally from Olson.  
+1. the identity of the continent within which the pixel falls. :question:  
+1. the lat and lon of each point :question: ;  
+1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:question: **How should I ideintify protection type? by category? 0/1?**) :heavy_protected_area:  
+1. Elevation: I don't think we need a focal window, just use the pixel value. :heavy_check_mark:  
+1. Althought it is ambigous, I produced both, point based and on buffer analysis: **Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.** :heavy_check_mark:  
+
+**Some other points**
+* the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly). :heavy_check_mark:  
+
 1. Non-restorable areas:  
     On Pablo's paper: we mask (exclude):
     * Water body;  
@@ -156,22 +167,8 @@ a threshold of 20% tree canopy cover for year 2000 data to produce
 a binary map of forest (1)/nonforest (0) on its original spatial resolution
 (fig. S8C)." (Global restoration opportunities in tropical
 rainforest landscapes")  
-
-
-#### Points-based:  
-1. the identify of the country/territory within which the pixel falls [GADM](https://gadm.org/data.html)  
-1. the identify of the biome, ecoregion and province within which the pixel falls. Most current data from Ecorregions (2017), originally from Olson.  
-1. the identity of the continent within which the pixel falls. :question:  
-1. the lat and lon of each point;  
-1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:question: **How should I ideintify protection type? by category? 0/1?**)
-1. Elevation: I don't think we need a focal window, just use the pixel value.  
-**Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.**  
-
-**Some other points**
-* :question: Try to build agriculture, pasturelands, road, urban areas, forest (natural regeneration and etc) at the lowest resolution to build it.
-* :black_square_button: To use the same map from the global prioritization (Bernardo's paper).
-* :black_square_button: Check if we could use data from this new paper in Science.
-* :black_square_button: the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly).  
+    * :black_square_button: To use the same [Restorable areas] map from the global prioritization (Bernardo's paper).
+    * :black_square_button: Check if we could use data from this new paper in Science.
 
 
 ### About buffers  
