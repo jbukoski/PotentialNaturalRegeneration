@@ -23,34 +23,29 @@ The gain pixels were reclassified into two groups:
 
 ### Felipe tasks
 - [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
+    - [ ] Build distance to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
+    - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
+        - [ ] for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
+        - [ ] if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps based on the most recent Hansen data;
     - [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level.  
     - [ ] Felipe start to extract data in the ~~stratified~~ random sample that we have discussed with Hathorne.  
+    - [ ] Look for layers about River;  
  
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
 - [X] share with Hawthorne how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
     Couldn't get the orignal data. asked Pablo to help.  
-- [ ] Look for layers about River;  
 - [X] Organize the data mentioned on [Som other points](#points-based)  
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
     **After contact on Whatsapp: past disturbance intensity is just for Brazil... we won't use. (28/07/2019)**;    
 - [X] Converted the Fagan polygons to raster; [for more info see rasterizationProcess.md](./rasterizationProcess.md)  
 
-- [ ] Regeneration data validation: Started this [validation process](https://code.earthengine.google.com/c37db48ed353a44a4aee0d5f12c13869);  
-**It would be useful to confirm that it meets the criteria that:**  
-    - [X] (i) the Fagan polygons were non-forest at the beginning of the time series  
-    - [ ] (ii) the polygons have been forested for at least the last 3 consecutive years in the time series
-    - [ ] (iii) the polygons are part of a regiongroup region that is at least 5 cells, allowing connections on the diagonal.
-    > If you have the ability to look at that data and see if my interpretation seems correct that would be good. If any of those criteria have not been met we will need to think about whether we want to do them ourselves or adjust the details of the analysis that we did for the AF.
+- [ ] Regeneration data validation: [for more info see valiationProcess.md](./validationProcess.md);  
 
 - [X] ~~Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);~~ Random sample points were done and is documented on [sampling.r](./R/sampling.r).
 - [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
        
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
-- [ ] Build distance to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
-    - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
-    1. for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
-    1. if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps based on the most recent Hansen data;
 
 **To keep in mind**  
 > Felipe, it would be good to report/record any processing that ends up modifying the units, if that ever happens (e.g. I sometimes do things like multiply by a constant and then convert to integer to save on disk space, but that could change units).
