@@ -6,7 +6,7 @@ About emojis:
 
 ## General overview:  
 This modeling and study is different form the previous. We do not have study coordinates, we have pixels were natural regeneration occurred across the study area. He (Matt Fagan) calculated natural regeneration between 2000 and 2012 using the Hansen data - including loss and gain. So, the original data is for 2000, the last data is for 2012 and regeneration occurred in 12 years.  
-:black_square_button: If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt.  
+:black_square_button: If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt. :question: **This need to be confirmed**   
 
 [For more information, see project's overwiew](https://trello.com/c/LPu48ZNL)  
 
@@ -18,11 +18,14 @@ The gain pixels were reclassified into two groups:
     * natural regeneration (delta 2000-2012);
 **Obs**: all standing in 2015, for at least three years
        
-> Also yes, it does not represent the total gain in forest cover in 2015, as other areas may have appears 2013-2015.  (Fagans)
+> Also yes, it does not represent the total gain in forest cover in 2015, as other areas may have appears 2013-2015.  (Fagan)
 
 
 ### Felipe tasks
 - [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
+    - [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level.  
+    - [ ] Felipe start to extract data in the ~~stratified~~ random sample that we have discussed with Hathorne.  
+ 
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
 - [X] share with Hawthorne how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
@@ -31,18 +34,15 @@ The gain pixels were reclassified into two groups:
 - [X] Organize the data mentioned on [Som other points](#points-based)  
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
     **After contact on Whatsapp: past disturbance intensity is just for Brazil... we won't use. (28/07/2019)**;    
- - [ ] Converted the Fagan polygons to raster:
-    - [ ] Is that at 30m resolution? 
-    - [ ] What projection are you using for this analysis?   
-    **It would be useful to confirm that it meets the criteria that:**
-        - [X] (i) the Fagan polygons were non-forest at the beginning of the time series  
-        Started this [validation process](https://code.earthengine.google.com/c37db48ed353a44a4aee0d5f12c13869);  
-        - [ ] (ii) the polygons have been forested for at least the last 3 consecutive years in the time series
-        - [ ] (iii) the polygons are part of a regiongroup region that is at least 5 cells, allowing connections on the diagonal.
+- [X] Converted the Fagan polygons to raster; [for more info see rasterizationProcess.md](./rasterizationProcess.md)  
+
+- [ ] Regeneration data validation: Started this [validation process](https://code.earthengine.google.com/c37db48ed353a44a4aee0d5f12c13869);  
+**It would be useful to confirm that it meets the criteria that:**  
+    - [X] (i) the Fagan polygons were non-forest at the beginning of the time series  
+    - [ ] (ii) the polygons have been forested for at least the last 3 consecutive years in the time series
+    - [ ] (iii) the polygons are part of a regiongroup region that is at least 5 cells, allowing connections on the diagonal.
     > If you have the ability to look at that data and see if my interpretation seems correct that would be good. If any of those criteria have not been met we will need to think about whether we want to do them ourselves or adjust the details of the analysis that we did for the AF.
 
-- [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level.  
-- [ ] Felipe start to extract data in the ~~stratified~~ random sample that we have discussed with Hathorne.  
 - [X] ~~Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);~~ Random sample points were done and is documented on [sampling.r](./R/sampling.r).
 - [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
        
