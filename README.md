@@ -22,7 +22,7 @@ The gain pixels were reclassified into two groups:
 
 
 ### Felipe tasks
-- [ ] [layers organization](https://code.earthengine.google.com/59628a0146beb40a9c3a65f0068eb265)  
+- [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
 - [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
 - [X] share with Hawthorne how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.   
