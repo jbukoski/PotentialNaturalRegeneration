@@ -6,7 +6,7 @@ About emojis:
 
 ## General overview:  
 This modeling and study is different form the previous. We do not have study coordinates, we have pixels were natural regeneration occurred across the study area. He (Matt Fagan) calculated natural regeneration between 2000 and 2012 using the Hansen data - including loss and gain. So, the original data is for 2000, the last data is for 2012 and regeneration occurred in 12 years.  
-:black_square_button: If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt. :question: **This need to be confirmed**   
+:heavy_check_mark: ~~If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt.~~ Current scenario: Analysis done from 2000 to 2015, but regeneration to 2012;  
 
 [For more information, see project's overwiew](https://trello.com/c/LPu48ZNL)  
 
@@ -63,8 +63,9 @@ For the pixel scale analysis we will want to do this:
 1. generate sample points representing the [:cehckbox:] areas that could have regenerated over the same time interval but did not. [point defined on item 2.1 of Boundary for the spatial domain](#boundary-for-the-spatial-domain);  
 1. for all the points in 1 & 2, acquire covariate data for each of those coordinates from the various datasets you have compiled (distance to forest, elevation, etc). [**Link to the covariate table**](https://www.dropbox.com/s/10nd7y6yk2y97ef/Environmental%20and%20socioeconomic%20variables_19_07_08.xlsx?dl=0);  
 1. use the data from steps 1-3 to create models predicting regeneration potential (will be done by **Hawthorne**);  
-1. apply those models back to each of the cells in which regeneration is possible ( :black_square_button: not sure if we have defined that set yet, but it is probably going to be all the pasture and agriculture cells, therefore excluding other natural habitats like grasslands, and water, urban, etc);  
-:question: **landuse according to IIS layer?**;  
+1. :heavy_check_mark: apply those models back to each of the cells in which regeneration is possible ( :black_square_button: not sure if we have defined that set yet, but it is probably going to be all the pasture and agriculture cells, therefore excluding other natural habitats like grasslands, and water, urban, etc);   
+~~:heavy_check_mark: ~~**landuse according to IIS layer?**;~~  
+Yes, starting 2015 CCI data converted to 30m excluding natural; landuse cover from CCI;  
 1. we then need to perform various summaries of that prediction raster;  
 
 **Hawthorne**:  leading 4;   
@@ -87,17 +88,18 @@ For the pixel scale analysis we will want to do this:
     1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc; ([see 10th point of "About layers" section](#about-layers))  
     1. :black_square_button: that are available for forest regeneration now (this is used for the predictions); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
     1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#matts-data)**. **Could anyone confirm?**  
-    1.  :question: how to measure restorable and non-restorable areas.([see 10/11th point of "About layers" section](#about-layers))  
+    1.  :heavy_check_mark: how to measure restorable and non-restorable areas.([see 10/11th point of "About layers" section](#about-layers)) -> **ESA CII crop and agri land...**  
     1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
 * Question from Hawthorne:
-    1. Are you OK with exlucding Deserts & Xeric grasslands?  
-    1. Do we include Flooded Grasslands & Savannahs so that the Pantanal is included in the analysis?  
-    1.  Which option would you argue for:  
+    1. :heavy-check_mark: Are you OK with exlucding Deserts & Xeric grasslands? **Yes, exclude**; 
+    1. :heavy_check_mark: Do we include Flooded Grasslands & Savannahs so that the Pantanal is included in the analysis? **Yes, sclude;**  
+    1.  :heavy_check_mark: Which option would you argue for:  
         - Include all Montane Grasslands & Shrublands? 
         - Include only African Montane Grasslands & Shrublands? 
-        - Exclude all Montane Grasslands & Shrublands?
-    1. OK to include Tropical & Subtropical coniferous forest?  
+        - Exclude all Montane Grasslands & Shrublands?  
+        **Exclude all of then**;
+    1. :heavy_check_mark: OK to include Tropical & Subtropical coniferous forest? **Yes, include**  
     1. :heavy_check_mark: The other two ecoregions are extensive and have lots of forest regeneration within them, so are included for sure:  
         - Tropical & Subtropical Dry Broadleaf Forests  
         - Tropical & Subtropical Moist Broadleaf Forests  
@@ -136,9 +138,9 @@ The only datasets I think would be useful to run as focal datasets are:
 #### Points-based:  
 1. the identify of the country/territory within which the pixel falls [~~GADM~~](https://gadm.org/data.html) [actually using LISB](http://geonode.state.gov/) :heavy_check_mark:  
 1. the identify of the biome, ecoregion and province within which the pixel falls. Most current data from Ecorregions (2017), originally from Olson.  
-1. the identity of the continent within which the pixel falls. :question:  
-1. the lat and lon of each point :question: ;  
-1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:question: **How should I ideintify protection type? by category? 0/1?**) :heavy_protected_area:  
+1. :heavy_check_mark: the identity of the continent within which the pixel falls. **Not necessary, anymore. Only ecoregion;**  
+1. the lat and lon of each point :heavy_check_mark: **Yes, inform lat/long**;  
+1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:heavy_check_mark: **How should I ideintify protection type? by category? 0/1?**): **Yes, inform the PA's cathegory**;  
 1. Elevation: I don't think we need a focal window, just use the pixel value. :heavy_check_mark:  
 1. Althought it is ambigous, I produced both, point based and on buffer analysis: **Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.** :heavy_check_mark:  
 
@@ -162,8 +164,8 @@ a threshold of 20% tree canopy cover for year 2000 data to produce
 a binary map of forest (1)/nonforest (0) on its original spatial resolution
 (fig. S8C)." (Global restoration opportunities in tropical
 rainforest landscapes")  
-    * :black_square_button: To use the same [Restorable areas] map from the global prioritization (Bernardo's paper).
-    * :black_square_button: Check if we could use data from this new paper in Science.
+    * :heavy_check_mark: To use the same [Restorable areas] map from the global prioritization (Bernardo's paper). **Not necessery, anymore**;  
+    * :heavy_check_mark: Check if we could use data from this new paper in Science. **Not necessery, anymore**  
 
 
 ### About buffers  
@@ -201,4 +203,4 @@ They can be combined into a dataset has the x and y coordinates, and a field cal
 1. :black_square_button: Felipe, when we start to use this data I would like to check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.
     Answer: I believe this is already defined. But not sure. **Could someone confirm?**
 1. check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.  
-    Answer: This seems to be solved, right?  **Could someone confirm?**
+    :black_square_button: This was not defined, yet.
