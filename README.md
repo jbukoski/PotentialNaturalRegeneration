@@ -6,23 +6,36 @@ About emojis:
 
 ## General overview:  
 This modeling and study is different form the previous. We do not have study coordinates, we have pixels were natural regeneration occurred across the study area. He (Matt Fagan) calculated natural regeneration between 2000 and 2012 using the Hansen data - including loss and gain. So, the original data is for 2000, the last data is for 2012 and regeneration occurred in 12 years.  
-:heavy_check_mark: ~~If we want to use the most actual forest cover map we could build it to 2017, but from 2012 to 2017 we have data on forest loss only - not gain. So, maybe 2012 will be our "current" scenario. I will check these informations with Matt.~~ Current scenario: Analysis done from 2000 to 2015, but regeneration to 2012;  
+Current scenario: Analysis done from 2000 to 2015, but regeneration uo to 2012;  
 
 [For more information, see project's overwiew](https://trello.com/c/LPu48ZNL)  
 
-### Matt's data:
+### Matt's data:  
 the original forest cover for Hansen is for the year 2000.  
 The gain pixels were reclassified into two groups:  
-
-    * plantations (timber or tree crops);
-    * natural regeneration (delta 2000-2012);
+* plantations (timber or tree crops);
+* natural regeneration (delta 2000-2012);  
 **Obs**: all standing in 2015, for at least three years
        
 > Also yes, it does not represent the total gain in forest cover in 2015, as other areas may have appears 2013-2015.  (Fagan)
 
+**Natural grass land**:  
+After that we should overlap this natural grasslands with ESA CCI 2000 agriculture and pasture and then get covariables for the random points. Not sure who will produce these random points and if you will start with random points for forests (Fagan), restorable areas (ESA CCI pasture (excluding native gasslands) and agriculture) or both.
+
+How to define native grasslands and pasturelands - Strassburg et al. under review
+
+>"As the ESA CCI map does not distinguish cultivated from natural grasslands, we 
+used the Terrestrial Ecoregions of the World and the Gridded Livestock of the World 
+datasets to classify each pixel into natural (not needing restoration) or cultivated grasslands 
+(potentially restorable pasturelands). If a pixel classified as grasslands (class 130) in the ESA-CCI 
+is located within an Ecoregion of non-grassland ecosystems (e.g. forests), and if it presents a cattle 
+density equal or higher than 1 head/km-2, it was reclassified to “pasturelands”, otherwise it was 
+reclassified to “native grassland”."
 
 ### Felipe tasks
 - [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
+    - [X] [ESA CCI data](): Download and upload as GEE asset ESA CCI land use and cover data for 2000 and 2015;  
+    - [X] Natual Grass layer: upload as asset;  
     - [ ] Build distance [~~opção I~~](https://developers.google.com/earth-engine/api_docs#eeimagedistance) ~~ou~~ [opção II](https://developers.google.com/earth-engine/api_docs#eeimagefastDistanceTransform) to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
     - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
         - [ ] for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
@@ -178,10 +191,6 @@ rainforest landscapes")
 1.4. Yellow color. I used to include variables that we will need build distance layers. For example distance to forest. I included it only. Which are the others I should include (Hawthorne): distance to rivers, roads, urban areas, forestry and natural regeneration?
 
 ### Discussions on clases and definitons
-
-1. :black_square_button: Are there any ambiguous land use categories we need to discuss? How can we develop these two datasets?  
-
-1. **Confirmar com renatinho**: Felipe has developed this layer already for us, right? (**Which paper?**) Can you remember me as we developed it - ESA CCI? At lower resolution (30 m) we have some more detailed layers that we could try to build this potentially restorable areas more detailed. In summary, this is a key point and before starting to get the data we need to have clear which database we will use to build it. ([see 11th point of "About layers" section](#about-layers))    
 
 1. :heavy_check_mark: Do you already have an algorithm for generating random points and what is it? How feasible **would it be to generate 550,000 random points in the regeneration areas (regen=1)**; and **550,000 in the non-regeneration areas (regen=0)**? That would be **1.1 million in total**, but we would expect to lose some of those to NoData problems when intersecting with the covariate datasets, hence we might end up with approximately 1 million. **This was done and is documented on [sampling.r](./R/sampling.r)**.  
     1. **I need you to tell me what sorts of numbers are realistic if this is asking too much.** One of the reasons I am asking for a lot is that we will almost certainly want to run some country-level or continental-level models to evaluate whether this improves prediction accuracy, so we need to make sure we have enough sample points within each of those strata.  
