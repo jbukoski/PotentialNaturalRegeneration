@@ -9,7 +9,7 @@
 |     11|Herbaceous cover                                                                   | 255| 255| 100|-|
 |     12|Tree or shrub cover                                                                | 255| 255|   0|-|
 |     20|Cropland, irrigated or post-flooding                                               | 170| 240| 240|Considered as potential for regeneration|
-|     30|Mosaic cropland (>50%) / natural vegetation (tree, shrub, herbaceous cover) (<50%) | 220| 240| 100|Considered as potential for regeneration|
+|     30|Mosaic cropland (>50%) / natural vegetation (tree, shrub, herbaceous cover) (<50%) | 220| 240| 100|-|
 |     40|Mosaic natural vegetation (tree, shrub, herbaceous cover) (>50%) / cropland (<50%) | 200| 200| 100|-|
 |     50|Tree cover, broadleaved, evergreen, closed to open (>15%)                          |   0| 100|   0|-|
 |     60|Tree cover, broadleaved, deciduous, closed to open (>15%)                          |   0| 160|   0|-|
