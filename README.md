@@ -213,3 +213,11 @@ They can be combined into a dataset has the x and y coordinates, and a field cal
     Answer: I believe this is already defined. But not sure. **Could someone confirm?**
 1. check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.  
     :black_square_button: This was not defined, yet.
+
+```
+conda create -n PotNatRegProj python  
+conda activate PotNatRegProj  
+conda install -c conda-forge earthengine-api  
+earthengine authenticate  
+pip install -U folium, ipython  
+```
