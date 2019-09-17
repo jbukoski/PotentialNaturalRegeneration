@@ -219,5 +219,5 @@ conda create -n PotNatRegProj python
 conda activate PotNatRegProj  
 conda install -c conda-forge earthengine-api  
 earthengine authenticate  
-pip install -U folium, ipython  
+pip install -U folium, ipython , jupyter 
 ```
