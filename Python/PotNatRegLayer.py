@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-This script is rganized to produce/identify areas fr potential natural regeneration:
-Grass and agricultural lands (omitting natural grass lands on both layers), which are not supposed to be restorable as they area grass lands.
+This script is organized to produce/identify areas fr potential natural regeneration:
+CCI ESA 2000 grass and agricultural lands, omitting natural grass lands layers on CCI ESA grassland class, which are not supposed to be restorable as they are natural grass lands).
 
 Overlap this natural grasslands with ESA CCI 2000
 agriculture and pasture and then
