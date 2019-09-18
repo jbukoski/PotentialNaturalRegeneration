@@ -19,10 +19,17 @@ The gain pixels were reclassified into two groups:
        
 > Also yes, it does not represent the total gain in forest cover in 2015, as other areas may have appears 2013-2015.  (Fagan)
 
-**Natural grass land**:  
-After that we should overlap this natural grasslands with ESA CCI 2000 agriculture and pasture and then get covariables for the random points. Not sure who will produce these random points and if you will start with random points for forests (Fagan), restorable areas (ESA CCI pasture (excluding native gasslands) and agriculture) or both.
+## Layers:  
+* [Natural regeneration (2000-2012);](#Matts-data)  
+* [Natural grass land;]()  
+* [Potential Natural Regeneration Areas;](#Potential-Natural-Regeneration-Areas)  
 
-How to define native grasslands and pasturelands - Strassburg et al. under review
+
+### Potential Natural Regeneration Areas
+This layer was produced by using ESA CCI land cover for 2000; We considered as potential for natural regeneration land cover all classes related with grassland and agriculture.  
+From the grassland cover class we removed pixels identified as natural grassland (**Strassburg et al. under review**).  
+For more info: [see legend]() or [layer creation script](PotNatRegAreas.py)  
+About Strassburg's natural grassland layer:  
 
 >"As the ESA CCI map does not distinguish cultivated from natural grasslands, we 
 used the Terrestrial Ecoregions of the World and the Gridded Livestock of the World 
@@ -35,7 +42,8 @@ reclassified to “native grassland”."
 ### Felipe tasks
 - [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
     - [X] [ESA CCI data](): Download and upload as GEE asset ESA CCI land use and cover data for 2000 and 2015;  
-    - [X] Natual Grass layer: upload as asset;  
+    - [X] Natual Grass layer: upload as asset;
+    - [X] Potentia Natural Regeneration Areas;  
     - [ ] Build distance [~~opção I~~](https://developers.google.com/earth-engine/api_docs#eeimagedistance) ~~ou~~ [opção II](https://developers.google.com/earth-engine/api_docs#eeimagefastDistanceTransform) to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
     - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
         - [ ] for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
@@ -52,16 +60,10 @@ reclassified to “native grassland”."
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
     **After contact on Whatsapp: past disturbance intensity is just for Brazil... we won't use. (28/07/2019)**;    
 - [X] Converted the Fagan polygons to raster; [for more info see rasterizationProcess.md](./rasterizationProcess.md)  
-
-- [ ] Regeneration data validation: [for more info see valiationProcess.md](./validationProcess.md);  
-
+- [X] Regeneration data validation: [for more info see valiationProcess.md](./validations/validationProcess.md);  
 - [X] ~~Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);~~ Random sample points were done and is documented on [sampling.r](./R/sampling.r).
 - [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
-       
 - [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
-
-**To keep in mind**  
-> Felipe, it would be good to report/record any processing that ends up modifying the units, if that ever happens (e.g. I sometimes do things like multiply by a constant and then convert to integer to save on disk space, but that could change units).
 
 ### Pablo's tasks
 1. Pablo, can you write here the methodology we used for your current paper.
