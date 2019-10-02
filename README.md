@@ -149,6 +149,7 @@ The only datasets I think would be useful to run as focal datasets are:
 1. Slope at 30m resolution with a 500 m buffer :heavy_check_mark:  
 1. - [ ] Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.  
 **~~Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.~~** Defined on "so perhaps based on the most recent Hansen data" statement.  
+1. Human Footprint Index (To be defined if buffer moving window or as point-based);  
 
 #### Points-based:  
 1. the identify of the country/territory within which the pixel falls [~~GADM~~](https://gadm.org/data.html) [actually using LISB](http://geonode.state.gov/) :heavy_check_mark:  
@@ -160,7 +161,7 @@ The only datasets I think would be useful to run as focal datasets are:
 1. Althought it is ambigous, I produced both, point based and on buffer analysis: **Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.** :heavy_check_mark:  
 
 **Some other points**
-* the scale of the focal window size: it will be somewhere in the 0.5-2km radius range (yet to be determined exactly). :heavy_check_mark:  
+* the scale of the focal window size: it will be somewhere in the ~~0.5-~~ 2km radius range (yet to be determined exactly). (accorded by e-mail [25 de set de 2019] that focal window will be done on 2 Km only ) :heavy_check_mark:  
 
 1. Non-restorable areas:  
     On Pablo's paper: we mask (exclude):
@@ -179,12 +180,16 @@ a threshold of 20% tree canopy cover for year 2000 data to produce
 a binary map of forest (1)/nonforest (0) on its original spatial resolution
 (fig. S8C)." (Global restoration opportunities in tropical
 rainforest landscapes")  
-    * :heavy_check_mark: To use the same [Restorable areas] map from the global prioritization (Bernardo's paper). **Not necessery, anymore**;  
-    * :heavy_check_mark: Check if we could use data from this new paper in Science. **Not necessery, anymore**  
+    * :heavy_check_mark: To use the same [Restorable areas] map from the global prioritization (Bernardo's paper). **Not necessary, anymore**;  
+    * :heavy_check_mark: Check if we could use data from this new paper in Science. **Not necessary, anymore**  
 
+### Distances  
+* forest cover;  
+* urban areas (ESA CCI distace at a 300m resolution) ;  
+* rivers;  
 
 ### About buffers  
-1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for 500m, 1 km and 2 km. I removed buffer needs for data with coarse resolution, for example 10 km. 
+1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for ~~500m, 1 km and~~ 2 km (accorded by e-mail [25 de set de 2019] that focal window will be done on 2 Km only ). I removed buffer needs for data with coarse resolution, for example 10 km. 
 
 1.2. Red color. I used to show lkayers taht we should not use because we have it in a better resolution.
 
