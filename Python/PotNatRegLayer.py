@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 """
-This script is organized to produce/identify areas fr potential natural regeneration:
+This script is organized to produce/identify areas for potential natural regeneration:
 CCI ESA 2000 grass and agricultural lands, omitting natural grass lands layers on CCI ESA grassland class, which are not supposed to be restorable as they are natural grass lands).
 
 Overlap this natural grasslands with ESA CCI 2000
-agriculture and pasture and then
-get covariables for the random points.
+agriculture and pasture
 
 Latter by whatsapp:
 Using NatGrass remove pixels that overlaps ESA2000 grasslands :. keeping only not natural grass lands which in deed was supposed to be restored.
@@ -78,11 +77,6 @@ webbrowser.open('./my_map.html')
 
 # defyning global bound
 coords = [[-180.0, -90.0], [180,  -90.0], [180, 90], [-180,90]]
-#globalGeo = ee.Geometry.Polygon(coords = coords, proj = ee.Projection( 'EPSG:4326' ), geodesic = False)
-#coords2 = [[-56.76453076439293, -7.763112099432921], [-56.76453076439293, -16.518129832807034], [-44.54773388939293, -16.518129832807034], [-44.54773388939293, -7.763112099432921]]
-#geometry = ee.Geometry.Polygon([[[-56.76453076439293, -7.763112099432921], [-56.76453076439293, -16.518129832807034], [-44.54773388939293, -16.518129832807034], [-44.54773388939293, -7.763112099432921]]], None, False);
-#region = ([116.2621, 39.8412], [116.2621, 40.01236],[116.4849, 40.01236],[116.4849, 39.8412])
-#crs_transform = [0.0027777777777779986, 0.0, -180.0, 0.0, -0.0027777777777779986, 90.0]
 
 # process tasks
 outNatRegAreas = batch.Export.image.toAsset(\

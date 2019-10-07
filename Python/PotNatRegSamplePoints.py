@@ -12,7 +12,7 @@ world = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
 # Create a folium map object.
 myMap = folium.Map(location=[-28, -46], zoom_start=6)
 
-# Add the elevation model to the map object.
+# Add the Potential area model to the map object.
 myMap.add_ee_layer(potAreas, {'min':0, 'max':1, 'palette':['white','blue']}, 'potAreas')
 #myMap.add_ee_layer(world, {}, 'world')
 

@@ -10,6 +10,11 @@ Current scenario: Analysis done from 2000 to 2015, but regeneration uo to 2012;
 
 [For more information, see project's overwiew](https://trello.com/c/LPu48ZNL)  
 
+## Layers:  
+* [Natural regeneration (2000-2012);](#Matts-data)  
+* [Potential Natural Regeneration Areas;](#Potential-Natural-Regeneration-Areas)  
+* [Natural grass land;](#About-Strassburgs-natural-grassland-layer)  
+
 ### Matt's data:  
 the original forest cover for Hansen is for the year 2000.  
 The gain pixels were reclassified into two groups:  
@@ -19,17 +24,12 @@ The gain pixels were reclassified into two groups:
        
 > Also yes, it does not represent the total gain in forest cover in 2015, as other areas may have appears 2013-2015.  (Fagan)
 
-## Layers:  
-* [Natural regeneration (2000-2012);](#Matts-data)  
-* [Natural grass land;]()  
-* [Potential Natural Regeneration Areas;](#Potential-Natural-Regeneration-Areas)  
-
-
 ### Potential Natural Regeneration Areas
 This layer was produced by using ESA CCI land cover for 2000; We considered as potential for natural regeneration land cover all classes related with grassland and agriculture.  
-From the grassland cover class we removed pixels identified as natural grassland (**Strassburg et al. under review**).  
-For more info: [see legend]() or [layer creation script](PotNatRegAreas.py)  
-About Strassburg's natural grassland layer:  
+From the grassland cover class we removed pixels identified as natural grassland ([**Strassburg et al. under review**](#About-Strassburgs-natural-grassland-layer)).  
+For more info: [see ESA CCI legend](https://github.com/FelipeSBarros/PotentialNaturalRegeneration/blob/master/CCI_Legend.md) or [layer creation script - GEE Python API](./Python/PotNatRegAreas.py)  
+
+#### About Strassburg's natural grassland layer:  
 
 >"As the ESA CCI map does not distinguish cultivated from natural grasslands, we 
 used the Terrestrial Ecoregions of the World and the Gridded Livestock of the World 
@@ -39,31 +39,27 @@ is located within an Ecoregion of non-grassland ecosystems (e.g. forests), and i
 density equal or higher than 1 head/km-2, it was reclassified to “pasturelands”, otherwise it was 
 reclassified to “native grassland”."
 
-### Felipe tasks
+## Felipe tasks
 - [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
-    - [X] [ESA CCI data](): Download and upload as GEE asset ESA CCI land use and cover data for 2000 and 2015;  
+    - [X] [ESA CCI data](http://maps.elie.ucl.ac.be/CCI/viewer/): Download and upload as GEE asset ESA CCI land use and cover data for 2000 and 2015;  
     - [X] Natual Grass layer: upload as asset;
-    - [X] Potentia Natural Regeneration Areas;  
-    - [ ] Build distance [~~opção I~~](https://developers.google.com/earth-engine/api_docs#eeimagedistance) ~~ou~~ [opção II](https://developers.google.com/earth-engine/api_docs#eeimagefastDistanceTransform) to nearest forest at a 30m resolution and would need to be done at two time periods [see ](#questions-i-believe-been-answered).
-    - [ ] Felipe produce the new layers we will need - layers based on distance and with other years.
-        - [ ] for the current modelling we need distance to forest near to the beginning of our time period (not sure what time period the Fagan data spans - is it ~~1995~~ 2000-2015?). **Aclaration** see [Matt's data section for more infor about time range](#matts-data);  
-        - [ ] if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps based on the most recent Hansen data;
-    - [ ] Felipe produce data in the buffer sizes we discussed and extract data for mean at the country or county level.  
-    - [ ] Felipe start to extract data in the ~~stratified~~ random sample that we have discussed with Hathorne.  
-    - [ ] Look for layers about River;  
- 
-- [X] Felipe, you should include the data that we have information for layers that we have comments in orange and it will help us to define the year we will use (or window) for each layer. The first thing is to have this table full and ready to be used.  
+    - [X] Potentia Natural Regeneration Areas;
+    - [ ] Look for layers about River;    
+    - [ ] Generate random points on Potential Natural Regeneration Areas;  
+    - [ ] Build distance layers (GEE algorithms [~~option I~~](https://developers.google.com/earth-engine/api_docs#eeimagedistance) ~~or~~ [option II](https://developers.google.com/earth-engine/api_docs#eeimagefastDistanceTransform)) from [Hansen] forest at a 30m resolution and would need to be done at two time periods:  
+        - [ ] 2000 and;  
+        - [ ] if distance to forest is included in the final model (it probably will be) we also need distance to current forest for the predictive modelling - so perhaps **based on the most recent Hansen data**;  
+        - [ ] urban areas (ESA CCI distace at a 300m resolution);  
+        - [ ] rivers;  
+- [ ] Organize/produce (covariate) data 
+- [ ] Extract data (covariate values) considering:  
+    - [X] the radius defined/discussed on [About layers](#About-layers);  
+    - [X] point based;  
 - [X] share with Hawthorne how we defined retorable ([see 11th point of "About layers" section](#about-layers))/non-restorable ([see 10th point of "About layers" section](#about-layers)) areas;  
-- [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it. 
-*Couldn't get the orignal data. asked Pablo to help.*  
-- [X] Organize the data mentioned on [Som other points](#points-based)  
+- [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.  
+*Couldn't get the orignal data. asked Pablo to help.*    
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
     **After contact on Whatsapp: past disturbance intensity is just for Brazil... we won't use. (28/07/2019)**;    
-- [X] Converted the Fagan polygons to raster; [for more info see rasterizationProcess.md](./rasterizationProcess.md)  
-- [X] Regeneration data validation: [for more info see valiationProcess.md](./validations/validationProcess.md);  
-- [X] ~~Check how feasably would be generating 1.1 milion points. [More info on "Questions I believe been answered"](#questions-i-believe-been-answered). First atempt [here](https://code.earthengine.google.com/6ed68da4bfc03a4bb14126294555848d);~~ Random sample points were done and is documented on [sampling.r](./R/sampling.r).
-- [ ] Check if Hawthorne concern about getting NA/NoData values is needed or we could avoid it somehow, reduzing number of points to be generated;    
-- [ ] It would be better to start with a more constrained problem. It would be ideal to take on the modelling for one of the biomes in Brazil because we already have a modelling framework that works quite well for the **AF** and could be readily adapted to other biomes. But I will write up the modelling process in detail for this global analysis and we can talk through it.
 
 ### Pablo's tasks
 1. Pablo, can you write here the methodology we used for your current paper.
@@ -72,10 +68,10 @@ reclassified to “native grassland”."
     * "Rural Population Change" and 
     * "Urban Population Change";  
 
-### About analysis process  
+## About analysis process  
 For the pixel scale analysis we will want to do this:  
 1. generate sample points from the Fagan regeneration areas;  
-1. generate sample points representing the [:cehckbox:] areas that could have regenerated over the same time interval but did not. [point defined on item 2.1 of Boundary for the spatial domain](#boundary-for-the-spatial-domain);  
+1. generate sample points representing the [:checkbox:] areas that could have regenerated over the same time interval but did not. [point defined on item 2.1 of Boundary for the spatial domain](#boundary-for-the-spatial-domain);  
 1. for all the points in 1 & 2, acquire covariate data for each of those coordinates from the various datasets you have compiled (distance to forest, elevation, etc). [**Link to the covariate table**](https://www.dropbox.com/s/10nd7y6yk2y97ef/Environmental%20and%20socioeconomic%20variables_19_07_08.xlsx?dl=0);  
 1. use the data from steps 1-3 to create models predicting regeneration potential (will be done by **Hawthorne**);  
 1. :heavy_check_mark: apply those models back to each of the cells in which regeneration is possible ( :black_square_button: not sure if we have defined that set yet, but it is probably going to be all the pasture and agriculture cells, therefore excluding other natural habitats like grasslands, and water, urban, etc);   
@@ -97,44 +93,30 @@ Yes, starting 2015 CCI data converted to 30m excluding natural; landuse cover fr
     :heavy_chack_mark: ~~Should we focuss **in tropical and subtropical forest ecosystems** (the same boundary for the Pablo's paper in the current CIFOR project).~~ 
     > I have been thinking about whether to use the ecoregions boundaries to define the spatial domain, and I am now thinking that we should not do that. The trouble with the ecoregions is that they are mapped at a very coarse mapping resolution. Of course there is a great deal of variation in habitat within each of those ecoregions and some of the ecoregions classified as non-forest at a coarse scale may contain regions of forest within them. Our analysis uses data with a much finer mapping resolution. So, for now, I suggest we treat our spatial domain as: all terrestrial land between 25 to -30 latitude (or whatever the exact latitude extent of the Fagan data is). 
 1. Within that overall spatial domain, **we will also need to define the areas that**:  
-    1. :black_square_button: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark: ([see 1st and 2nd points of About Layes section](#about-layers) **These can just be binary rasters** if that is easiest.  
-    1. I think **we do not want stratified random sampling** at this time. :heavy_check_mark: Let's try the random sampling functionality in GEE and see how it goes.  **This was done and is documented on [sampling.r](./R/sampling.r)**.
-    1. :black_square_button: We also need a definition of 'available for regeneration': That would include agriculture and pasture for sure.
+    1. :heavy_check_mark: were available for forest regeneration 20 years ago (or at the beginning of the Fagan time-series) (this is used to generate the non-regeneration random points); :heavy_exclamation_mark: ([see 1st and 2nd points of About Layes section](#about-layers) **These can just be binary rasters** if that is easiest.  
     1. :black_square_button: We also need a definition of non-potentially restorable: Urban, water, wetlands, native grasslands, etc; ([see 10th point of "About layers" section](#about-layers))  
     1. :black_square_button: that are available for forest regeneration now (this is used for the predictions); :heavy_exclamation_mark:**These can just be binary rasters** if that is easiest.  
-    1. :black_square_button: It would be good to discuss with Hawthorne as well which year would be the best to measure forest cover; **[This seems to have already defined/solved on  Matt's data section](#matts-data)**. **Could anyone confirm?**  
-    1.  :heavy_check_mark: how to measure restorable and non-restorable areas.([see 10/11th point of "About layers" section](#about-layers)) -> **ESA CII crop and agri land...**  
-    1. :black_square_button: we need to decide what will be our "current" scenario and the best data for using in each variable as they may have different data of updates.  
 
-* Question from Hawthorne:
-    1. :heavy-check_mark: Are you OK with exlucding Deserts & Xeric grasslands? **Yes, exclude**; 
-    1. :heavy_check_mark: Do we include Flooded Grasslands & Savannahs so that the Pantanal is included in the analysis? **Yes, sclude;**  
-    1.  :heavy_check_mark: Which option would you argue for:  
-        - Include all Montane Grasslands & Shrublands? 
-        - Include only African Montane Grasslands & Shrublands? 
-        - Exclude all Montane Grasslands & Shrublands?  
-        **Exclude all of then**;
-    1. :heavy_check_mark: OK to include Tropical & Subtropical coniferous forest? **Yes, include**  
-    1. :heavy_check_mark: The other two ecoregions are extensive and have lots of forest regeneration within them, so are included for sure:  
-        - Tropical & Subtropical Dry Broadleaf Forests  
-        - Tropical & Subtropical Moist Broadleaf Forests  
-* Tropical & Subtropical coniferous forest, Tropical & Subtropical Dry Broadleaf Forests, Tropical & Subtropical Moist Broadleaf Forests. That is, critical areas such as - Tropical & Subtropical Grasslands, Savannas & Shrublands - should not be included in my point of view. Reasons: 1) our study is focused exclusively in forest biomes (even for TRENDS) and Fagan's work as well, 2) these delimitations are too course and it may also has affected Fagan's data. But we should be conservative, I would prefer to avoid any risk of including afforestation in our map, 3) our contract is for (humid) forests, we are doing more than this and it is great.  I only would like to include (sub-)tropical forests of Australia, they don't have it in the ecorregions and we have some data there. Do you have any shapefile for it Hawthorne?  
-
-### About layers
+## About layers
 
 * The Fagan data provides the mask for the areas that regenerated forest.  
-* The other mask we need to develop is **the areas that could have regenerated but did not**. Ideally this would be done at the same resolution as the Fagan data and would meet these criteria:
+* The other mask we need to develop is **the areas that could have regenerated but did not** :heavy_check_mark: . Ideally this would be done at the same resolution as the Fagan data and would meet these criteria:
     1. (i) if a cell is "1" in the Fagan data (i.e. it regenerated), it cannot also be part of this set (i.e. obviously a cell cannot be coded as both regenerating and not regenerating).
     1. (ii) it must have been non-forest at the beginning of the time-series
     1. (iii) it should exclude all cells that were never forest, or that have no possibility of being forest (i.e. all urban/developed areas, water, wetlands, etc)
     1. (iv) the cell must fall within the spatial domain defined above
->If this cannot be done at the same resolution as the Fagan data, OK, let's just proceed with it at whatever best resolution we can.
 
-The only datasets I think would be useful to run as focal datasets are:
+### About buffers  
+1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for ~~500m, 1 km and~~ 2 km (accorded by e-mail [25 de set de 2019] that focal window will be done on 2 Km only ). I removed buffer needs for data with coarse resolution, for example 10 km.  
+1.2. Red color. I used to show lkayers taht we should not use because we have it in a better resolution.  
+1.3. Orange color. I used to show layers taht we may want to produce using differnet years or range of years.  
+1.4. Yellow color. I used to include variables that we will need build distance layers. For example distance to forest. I included it only. Which are the others I should include (Hawthorne): distance to rivers, roads, urban areas, forestry and natural regeneration?  
 
-1. Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland. 
+The only datasets I think would be useful to run as focal datasets are:  
+
+1. Cropland and pasture at 329 m resolution with a 2 km buffer to calculation proportion of cropland.  
     * CropII - :heavy_check_mark:  
-    * PastureIIS - :heavy_check_mark:
+    * PastureIIS - :heavy_check_mark:  
 
 **Note that if we use a 1 km buffer, that is only 29 cells falling within the window. The problem with that is that there are then only 29 unique values possible in the response variable, which makes it more similar to a categorical variable in the context of random forest modelling. A 2km buffer would have 113 cells so 113 possible values, so that makes it more like a continuous variable. As a general rule of thumb, it might be best to avoid using a buffer size that results in less than 50 cells (and preferably more like 100) in the window to avoid the limited unique value problem.**
 
@@ -143,33 +125,28 @@ The only datasets I think would be useful to run as focal datasets are:
 1. Human population at 250 m resolution with a 2 km buffer :heavy_check_mark:  
 1. Strictly Protected Area at 1 km  with a 2 km buffer :heavy_check_mark:  
 1. Sustainable Protected Area at 1 km with a 2 km buffer :heavy_check_mark:  
-**I note those two variables could be added together in R to obtain total protected area, so no need to calculate that as part of the geoprocessing.**  
-:question: **I dind't understand the sentence above.**  
 1. Urban area at 300 m reslution with a 2 km buffer :heavy_check_mark:  
 1. Slope at 30m resolution with a 500 m buffer :heavy_check_mark:  
-1. - [ ] Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.  
-**~~Note that Forest cover is one of the few variables where we need to explore multiple radii. I see there are several forest cover datasets at 30 m so we may need to discuss which one to use.~~** Defined on "so perhaps based on the most recent Hansen data" statement.  
+1. - [ ] Forest cover (one date near the beginning of the time series) at a 30m resolution with a 500 m, 1 km and 2 km buffer.   
 1. Human Footprint Index (To be defined if buffer moving window or as point-based);  
 
-#### Points-based:  
+### Points-based:  
 1. the identify of the country/territory within which the pixel falls [~~GADM~~](https://gadm.org/data.html) [actually using LISB](http://geonode.state.gov/) :heavy_check_mark:  
 1. the identify of the biome, ecoregion and province within which the pixel falls. Most current data from Ecorregions (2017), originally from Olson.  
 1. :heavy_check_mark: the identity of the continent within which the pixel falls. **Not necessary, anymore. Only ecoregion;**  
 1. the lat and lon of each point :heavy_check_mark: **Yes, inform lat/long**;  
-1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:heavy_check_mark: **How should I ideintify protection type? by category? 0/1?**): **Yes, inform the PA's cathegory**;  
+1. does the pixel fall within a protected area? (And perhaps the type of protected area, if the global protected area dataset has multiple levels that might be related to forest regeneration. For example, some times of protected status may still allow some level of forestry). https://www.protectedplanet.net/ (:heavy_check_mark: **Yes, inform the PA's cathegory**;  
 1. Elevation: I don't think we need a focal window, just use the pixel value. :heavy_check_mark:  
 1. Althought it is ambigous, I produced both, point based and on buffer analysis: **Slope I did not include a buffer because we want the information at the point with natural regeneration or without natural regeneration, so we need the data at the point only.** :heavy_check_mark:  
 
 **Some other points**
-* the scale of the focal window size: it will be somewhere in the ~~0.5-~~ 2km radius range (yet to be determined exactly). (accorded by e-mail [25 de set de 2019] that focal window will be done on 2 Km only ) :heavy_check_mark:  
+* the scale of the focal window size: 2km radius range (accorded by e-mail [25 de set de 2019])  
 
 1. Non-restorable areas:  
     On Pablo's paper: we mask (exclude):
     * Water body;  
     * Wetlands;
     * Permanent snow and ice area (Oslon data. If necessary [take a look here](https://github.com/FelipeSBarros/WorldRestorationUncertainty#updating-forested-areas-2017)  
-    * ~~Hansen's masked areas~~;
-    * ~~Hansen's forest areas w/ 100% fo forest cover~~;
 
 1. Restorable areas: [GEE code here](https://code.earthengine.google.com/46c209046cecd3349e5b36eed5de67e3) 
     >""We estimated the persistence chances of restored
@@ -180,22 +157,11 @@ a threshold of 20% tree canopy cover for year 2000 data to produce
 a binary map of forest (1)/nonforest (0) on its original spatial resolution
 (fig. S8C)." (Global restoration opportunities in tropical
 rainforest landscapes")  
-    * :heavy_check_mark: To use the same [Restorable areas] map from the global prioritization (Bernardo's paper). **Not necessary, anymore**;  
-    * :heavy_check_mark: Check if we could use data from this new paper in Science. **Not necessary, anymore**  
 
-### Distances  
-* forest cover;  
-* urban areas (ESA CCI distace at a 300m resolution) ;  
-* rivers;  
-
-### About buffers  
-1.1. Buffers. I have changed all buffers to 2 km. For forest data we will do it buffers for ~~500m, 1 km and~~ 2 km (accorded by e-mail [25 de set de 2019] that focal window will be done on 2 Km only ). I removed buffer needs for data with coarse resolution, for example 10 km. 
-
-1.2. Red color. I used to show lkayers taht we should not use because we have it in a better resolution.
-
-1.3. Orange color. I used to show layers taht we may want to produce using differnet years or range of years.
-
-1.4. Yellow color. I used to include variables that we will need build distance layers. For example distance to forest. I included it only. Which are the others I should include (Hawthorne): distance to rivers, roads, urban areas, forestry and natural regeneration?
+## About Scripts:  
+* [PotNarRegLayer](): GEE Python API to identify areas that, on year 2000, had potential was availible for natural regeneration. Using 2000 CCI ESA specific land use classes ([see legend]()) for more info), pixels identifyed as Natural Grass (Layer from Strassburg et al.) were excluded. Result are saved as image GEE asset;  
+* [PotNatRegSamplePoints](): GEE Python API script to, based on **PotNatRegLayer**, generate XXX random points that will be used to get covariate data. **Script not finilized**;  
+* [vectorizePotNatRegAreas](): GEE Python API to convert PotNatRegLayer on featureCollection to, later, generate random points based on each feature area. **Vectorization is done splitting data in different bounding box. Sampling points not done**";  
 
 ### Discussions on clases and definitons
 
@@ -212,14 +178,10 @@ They can be combined into a dataset has the x and y coordinates, and a field cal
 
 ### Questions I believe been answered
 
-1. :heavy_check_mark: Do the Fagan polygons already exclude forestry?  
-    Answer: I saw that they classifyied as plantation and regrowth, also take a look on [Matt's data section](#matts-data);  
-1. There is no "distance to nearest forest" variable. I see you say we can extract them. I care most about distance to forest, and am less concerned about including distance to roads or rivers. I think distance to forest should be calculated at a 30m resolution and would need to be done at two time periods:  
-    Answer: OK, already done in Felipe'staks section; 
-1. :black_square_button: Felipe, when we start to use this data I would like to check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.
-    Answer: I believe this is already defined. But not sure. **Could someone confirm?**
 1. check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.  
     :black_square_button: This was not defined, yet.
+
+## GEE Python API environment setting  
 
 ```
 conda create -n PotNatRegProj python  
@@ -227,4 +189,4 @@ conda activate PotNatRegProj
 conda install -c conda-forge earthengine-api  
 earthengine authenticate  
 pip install -U folium, ipython , jupyter 
-```
+```  
