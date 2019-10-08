@@ -13,11 +13,11 @@ Current scenario: Analysis done from 2000 to 2015, but regeneration up to 2012;
 ## Layers:  
 * [Natural regeneration (2000-2012);](#Matts-data)  
 * [Potential Natural Regeneration Areas at 2000;](#Potential-Natural-Regeneration-Areas)  
-* [Natural grass land;](#About-Strassburgs-natural-grassland-layer)
+* [Natural grass land;](#About-Strassburgs-natural-grassland-layer)  
 * [Potential Natural Regeneration Areas at 2000 **that didn't regenerated**;](#Potential-Natural-Regeneration-Areas-Not-Regenerated)  
 * [Covariate layers;](#About-covariate-layers)  
 * [No Restorable Areas;](#No-Restorable-Areas)  
-* ["Actual" Potential Natural Regeneration Areas;](#Actual-Potential-Natural-Regeneration-Areas)
+* ["Actual" Potential Natural Regeneration Areas;](#Actual-Potential-Natural-Regeneration-Areas)  
 
 ### Matt's data:  
 the original forest cover for Hansen is for the year 2000.  
@@ -30,8 +30,8 @@ The gain pixels were reclassified into two groups:
 
 * The Fagan data provides the mask for the areas that regenerated forest.  
 
-### Potential Natural Regeneration Areas  
-This layer was produced by using ESA CCI land cover for year 2000; We considered as potential for natural regeneration land cover all classes related with grassland and agriculture. For more info: [see ESA CCI legend](https://github.com/FelipeSBarros/PotentialNaturalRegeneration/blob/master/CCI_Legend.md) or [layer creation script - GEE Python API](./Python/PotNatRegAreas.py).  
+### Potential Natural Regeneration Layer  
+This layer was produced by using ESA CCI land cover for year 2000; We considered as potential for natural regeneration land cover all classes related with grassland and agriculture. For more info: [see ESA CCI legend](https://github.com/FelipeSBarros/PotentialNaturalRegeneration/blob/master/CCI_Legend.md) or [layer creation script - GEE Python API](./Python/PotNatRegLayer.py).  
 From the classes mentioned above, we removed pixels identified as natural grassland ([**Strassburg et al. under review**](#About-Strassburgs-natural-grassland-layer)), as we don't espect natural grass areas to be forested.  
 This is used to generate the non-regeneration random points  
 > **These can just be binary rasters** if that is easiest.  
@@ -46,7 +46,7 @@ is located within an Ecoregion of non-grassland ecosystems (e.g. forests), and i
 density equal or higher than 1 head/km-2, it was reclassified to “pasturelands”, otherwise it was 
 reclassified to “native grassland”."
 
-### Potential Natural Regeneration Areas [**that Not Regenerated**]  
+### Potential Natural Regeneration Layer [**that Not Regenerated**]  
 Ideally this would be done at the same resolution as the Fagan data and would meet these criteria:
         1. if a cell is "1" in the Fagan data (i.e. it regenerated), it cannot also be part of this set (i.e. obviously a cell cannot be coded as both regenerating and not regenerating).  
         1. it must have been non-forest at the beginning of the time-series  
@@ -80,10 +80,10 @@ a binary map of forest (1)/nonforest (0) on its original spatial resolution
 rainforest landscapes")  
 
 ## Felipe tasks
-- [ ] [layers organization](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)  
+- [ ] **layers organization**  
     - [X] [ESA CCI data](http://maps.elie.ucl.ac.be/CCI/viewer/): Download and upload as GEE asset ESA CCI land use and cover data for 2000 and 2015;  
     - [X] [Natual grassland layer](#About-Strassburgs-natural-grassland-layer): upload as asset;
-    - [X] Create [Potentia Natural Regeneration Areas](#Potential-Natural-Regeneration-Areas) as asset;
+    - [X] Create [Potentia Natural Regeneration Layer](#Potential-Natural-Regeneration-Areas) as asset;  
     - [ ] Look for layers about River;    
     - [ ] Generate random points on Potential Natural Regeneration Areas;  
     - [ ] Build distance layers (GEE algorithms [~~option I~~](https://developers.google.com/earth-engine/api_docs#eeimagedistance) ~~or~~ [option II](https://developers.google.com/earth-engine/api_docs#eeimagefastDistanceTransform)) for:  
@@ -96,6 +96,7 @@ rainforest landscapes")
 - [ ] Extract data (covariate values) considering:  
     - [X] the radius defined/discussed on [About layers](#About-covariate-layers);  
     - [X] point based;  
+    - [Script](https://code.earthengine.google.com/a6ccffd4bc98f44cb3da3efba61693d0)
 - [X] Felipe, I have sent you other potential data, can you review your e mails to check if you can get  and process it.  
 *Couldn't get the orignal data. asked Pablo to help.*    
 - [X] ~~Felipe, attached the supplementary material for the AF study. There you can find all variables we used and the buffer sizes as well (I think so)~~.  
@@ -170,9 +171,9 @@ The only datasets I think would be useful to run as focal datasets are:
 * the scale of the focal window size: 2km radius range (accorded by e-mail [25 de set de 2019])  
 
 ## About Scripts:  
-* [PotNarRegLayer](): GEE Python API to identify areas that, on year 2000, had potential was availible for natural regeneration. Using 2000 CCI ESA specific land use classes ([see legend]()) for more info), pixels identifyed as Natural Grass (Layer from Strassburg et al.) were excluded. Result are saved as image GEE asset;  
-* [PotNatRegSamplePoints](): GEE Python API script to, based on **PotNatRegLayer**, generate XXX random points that will be used to get covariate data. **Script not finilized**;  
-* [vectorizePotNatRegAreas](): GEE Python API to convert PotNatRegLayer on featureCollection to, later, generate random points based on each feature area. **Vectorization is done splitting data in different bounding box. Sampling points not done**";  
+* [PotNarRegLayer](./Python/PotNatRegLayer.py): GEE Python API to identify areas that, on year 2000, had potential was availible for natural regeneration. Using 2000 CCI ESA specific land use classes ([see legend](./CCI_Legend.md)) for more info), pixels identifyed as Natural Grass (Layer from Strassburg et al.) were excluded. Result are saved as image GEE asset;  
+* [PotNatRegSamplePoints](./Python/PotNatRegSamplePoints.py): GEE Python API script to, based on **PotNatRegLayer**, generate [550,000 random points](Discussions on clases and definitons) that will be used to get covariate data. **Script not finilized**;  
+* [vectorizePotNatRegAreas](./Python/vectorizePotNatRegAreas.py): GEE Python API to convert PotNatRegLayer on featureCollection to, later, generate random points based on each feature area. **Vectorization is done splitting data in different bounding box. Sampling points not done**";  
 
 ### Discussions on clases and definitons
 
