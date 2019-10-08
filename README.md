@@ -187,11 +187,6 @@ They can be combined into a dataset has the x and y coordinates, and a field cal
 
 > This is an important general point: we are building a statistical model of forest regeneration over the last 20 years for which we want predictor variables that relate to conditions near the start of that period. But for predicting future regeneration we want to use variables representing current conditions. Many of the variables will not change for various reasons, but key ones related to forest cover and distance to forest should be calculated separately for each of those two time periods whenever possible.
 
-### Questions I believe been answered
-
-1. check if we have information for natural regeneration and plantation only or forest cover as well. Otherwise we will need to generate foret cover data from Hansen for 2000 and 2012.  
-    :black_square_button: This was not defined, yet.
-
 ## GEE Python API environment setting  
 
 ```
