@@ -6,7 +6,7 @@ CCI ESA 2000 grass and agricultural lands, omitting natural grass lands layers o
 Overlap this natural grasslands with ESA CCI 2000
 agriculture and pasture
 
-Latter by whatsapp:
+Later by whatsapp:
 Using NatGrass remove pixels that overlaps ESA2000 grasslands :. keeping only not natural grass lands which in deed was supposed to be restored.
 Then, 'merge' with agriculture;
 """
@@ -28,10 +28,11 @@ def add_ee_layer(self, eeImageObject, visParams, name):
     overlay = True,
     control = True
   ).add_to(self)
+
 # Add EE drawing method to folium.
 folium.Map.add_ee_layer = add_ee_layer
 
-# init EE
+# Initialize EE
 ee.Initialize()
 
 # Importing data
@@ -40,7 +41,7 @@ CCI = ee.Image("users/HotSpotRestoration/ESACCI-LC-L4-LCCS-Map-300m-P1Y-1992_201
 elevation = ee.Image("USGS/SRTMGL1_003")
 world = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
 
-# masking where there is Natural Grass pixels
+# Masking where there is Natural Grass pixels
 NaturalGrassUnMask = NaturalGrass.unmask()
 NaturalGrassInverted = NaturalGrassUnMask.eq(0)
 
@@ -49,7 +50,7 @@ CCI2000 = CCI.select(['b9'], ['PotRestArea00']) #Select landuse for year 2000
 # Masking
 CCI2000 = CCI2000.updateMask(elevation)
 
-#masking landuses different than agriculture and grassland
+# Masking landuses different than agriculture and grassland
 CCI2000 = CCI2000.where(CCI2000.eq(0), 3) # changing no data to other value so we dont have problem on masking
 NatRegAreas = CCI2000.where(CCI2000.eq(10), 999)
 NatRegAreas = NatRegAreas.where(NatRegAreas.eq(120), 999)
@@ -93,8 +94,8 @@ outNatRegAreas = batch.Export.image.toAsset(\
   maxPixels = 1e13
   )
 
-process = batch.Task.start(outNatRegAreas)
+#process = batch.Task.start(outNatRegAreas)
 
-# checking task status
-outNatRegAreas.status()
-pprint(batch.Task.status(outNatRegAreas))
+# Checking task status
+#outNatRegAreas.status()
+#pprint(batch.Task.status(outNatRegAreas))

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_006be7140c4d479fa2433aa4ecbb2873 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_006be7140c4d479fa2433aa4ecbb2873" ></div>
+        
+</body>
+<script>    
+    
+            var map_006be7140c4d479fa2433aa4ecbb2873 = L.map(
+                "map_006be7140c4d479fa2433aa4ecbb2873",
+                {
+                    center: [-28.0, -46.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e597f08f66334b87979f627fb262f34d = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_006be7140c4d479fa2433aa4ecbb2873);
+        
+    
+            var tile_layer_e5971278a81049a8bcbb156196a08a06 = L.tileLayer(
+                "https://earthengine.googleapis.com/map/a4700e9785ffbc3509d41b5bc6861776/{z}/{x}/{y}?token=f30e5ef65220f27b6935213e7b52e518",
+                {"attribution": "Map Data \u00a9 Google Earth Engine", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_006be7140c4d479fa2433aa4ecbb2873);
+        
+    
+            var tile_layer_a07f3d1a3256407d9fcfd1f0f37494c9 = L.tileLayer(
+                "https://earthengine.googleapis.com/map/af75593a0edc86b6093a881fdffc6697/{z}/{x}/{y}?token=d9de248e64bcedf7a0674543aef184c4",
+                {"attribution": "Map Data \u00a9 Google Earth Engine", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_006be7140c4d479fa2433aa4ecbb2873);
+        
+    
+            var tile_layer_4eaed8679ade4a88b69be0f4874524a4 = L.tileLayer(
+                "https://earthengine.googleapis.com/map/4d0fc3345e7cd83cf63b0950ccef10c7/{z}/{x}/{y}?token=c07c10ac6db5341d955b4d39a6423376",
+                {"attribution": "Map Data \u00a9 Google Earth Engine", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_006be7140c4d479fa2433aa4ecbb2873);
+        
+    
+            var layer_control_afdd5038db81476ba9264569853418d7 = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_e597f08f66334b87979f627fb262f34d,
+                },
+                overlays :  {
+                    "CCI2000" : tile_layer_e5971278a81049a8bcbb156196a08a06,
+                    "NatRegAreas" : tile_layer_a07f3d1a3256407d9fcfd1f0f37494c9,
+                    "NaturalGrass" : tile_layer_4eaed8679ade4a88b69be0f4874524a4,
+                },
+            };
+            L.control.layers(
+                layer_control_afdd5038db81476ba9264569853418d7.base_layers,
+                layer_control_afdd5038db81476ba9264569853418d7.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_006be7140c4d479fa2433aa4ecbb2873);
+        
+</script>
